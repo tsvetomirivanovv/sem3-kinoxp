@@ -12,6 +12,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 import java.util.Map;
 
@@ -84,6 +85,17 @@ public class ManageMovieScene {
 
         manageMovieScene = new Scene(root, 700, 500);
 
+        Stage stage = new Stage();
+        stage.setScene(manageMovieScene);
+
+        infoButton.setOnAction(event -> {
+            ViewMovie movie = new ViewMovie();
+            try {
+                movie.start(stage);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
        /* removeButton.setOnAction(event -> {
             ManageMovieController.removeMovie(moviesTableView.getSelectionModel().getSelectedItem());
 

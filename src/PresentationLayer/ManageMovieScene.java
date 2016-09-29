@@ -23,18 +23,26 @@ public class ManageMovieScene {
     private Scene manageMovieScene;
     private BorderPane root;
     private Button addButton, removeButton, infoButton, editButton;
-    public static TableView<Object> moviesTableView;
+    /*public static TableView<Object> moviesTableView;
     private TableColumn<Object, String> titleColumn;
     private TableColumn<Object, Integer> durationColumn;
     private TableColumn<Object, Double> priceColumn;
-    private TableColumn<Object, String> genreColumn;
+    private TableColumn<Object, String> genreColumn;*/
+    public static TableView<Movie> moviesTableView;
+    private TableColumn<Movie, Integer> movieIdColumn;
+    private TableColumn<Movie, String> titleColumn;
+    private TableColumn<Movie, Integer> durationColumn;
+    private TableColumn<Movie, Double> priceColumn;
+    private TableColumn<Movie, String> genreColumn;
 
 
 
 
     public Scene setManageMovieScene(){
-        KinoXP.movieList.add(new Movie("Jason Bourne",95,250,"Matt Damon","Cool description","123","19","Action","4.5"));
-        KinoXP.movieList.add(new Movie("Jason Bourne",95,250,"Matt Damon","Cool description","123","19","Action","4.5"));
+        ObservableList<Movie> movies = FXCollections.observableArrayList(KinoXP.movieList);
+
+        movies.add(new Movie("Jason Bourne",95,250,"Matt Damon","Cool description","123","19","Action","4.5"));
+        movies.add(new Movie("Jason Bourne",95,250,"Matt Damon","Cool description","123","19","Action","4.5"));
 
         addButton = new Button("Add");
         addButton.setPrefSize(100,30);
@@ -58,12 +66,12 @@ public class ManageMovieScene {
         genreColumn = new TableColumn<>("Genre");
         genreColumn.setMinWidth(120);
 
-        titleColumn.setCellValueFactory(new PropertyValueFactory<Object, String>("name"));
+        /*titleColumn.setCellValueFactory(new PropertyValueFactory<Object, String>("name"));
         durationColumn.setCellValueFactory(new PropertyValueFactory<Object, Integer>("duration"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<Object, Double>("price"));
         genreColumn.setCellValueFactory(new PropertyValueFactory<Object, String>("genre"));
         moviesTableView.getColumns().addAll(titleColumn,durationColumn,priceColumn,genreColumn);
-        moviesTableView.itemsProperty().setValue(KinoXP.movieList);
+        moviesTableView.itemsProperty().setValue(KinoXP.movieList);*/
         Region buttonReg = new Region();
         buttonReg.setPrefWidth(200);
 
@@ -76,10 +84,14 @@ public class ManageMovieScene {
 
         manageMovieScene = new Scene(root, 700, 500);
 
-        removeButton.setOnAction(event -> {
+       /* removeButton.setOnAction(event -> {
             ManageMovieController.removeMovie(moviesTableView.getSelectionModel().getSelectedItem());
 
-        });
+        });*/
+
+        ManageMovieController manageMovieController = new ManageMovieController();
+        addButton.setOnAction(event -> manageMovieController.handleAdd());
+
         return manageMovieScene;
 
 

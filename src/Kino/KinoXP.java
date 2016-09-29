@@ -18,7 +18,11 @@ public class KinoXP extends Application {
     // global list for storing data from Database
     public static ObservableList<Movie> movieList;
 
-    public void start(Stage primaryStage) throws Exception{
+    public static void main(String[] args) {
+        launch(args);
+    }
+
+    public void start(Stage primaryStage) throws Exception {
         window = primaryStage;
 
         // connect to Database
@@ -37,17 +41,10 @@ public class KinoXP extends Application {
 
     }
 
-    public void fillArrayLists(){
+    public void fillArrayLists() {
 
         DBMovies dbMovies = new DBMovies();
         movieList = dbMovies.readAll();
-        for (Movie mov : movieList) {
-            System.out.println(movieList.indexOf(mov) + ". " + mov.getName());
-        }
-    }
-
-    public static void main(String[] args) {
-        launch(args);
     }
 
 }

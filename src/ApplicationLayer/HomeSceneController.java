@@ -10,7 +10,7 @@ public class HomeSceneController {
 
     private ManageMovieScene manageMovieScene = new ManageMovieScene();
 
-    public void changeToManageMovieScene(){
+    public void changeToManageMovieScene() {
         KinoXP.window.setScene(manageMovieScene.setManageMovieScene());
     }
 }

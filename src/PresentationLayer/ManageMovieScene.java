@@ -18,25 +18,25 @@ import javafx.scene.layout.VBox;
  */
 public class ManageMovieScene {
 
+    public static TableView<Movie> moviesTableView;
     private Scene manageMovieScene;
     private BorderPane root;
     private Button addButton, removeButton, infoButton, editButton;
-    public static TableView<Movie> moviesTableView;
     private TableColumn<Movie, String> nameColumn;
     private TableColumn<Movie, Integer> durationColumn;
     private TableColumn<Movie, Double> priceColumn;
     private TableColumn<Movie, String> genreColumn;
 
-    public Scene setManageMovieScene(){
+    public Scene setManageMovieScene() {
 
         addButton = new Button("Add");
-        addButton.setPrefSize(100,30);
+        addButton.setPrefSize(100, 30);
         removeButton = new Button("Remove");
-        removeButton.setPrefSize(100,30);
+        removeButton.setPrefSize(100, 30);
         infoButton = new Button("Info");
-        infoButton.setPrefSize(100,30);
+        infoButton.setPrefSize(100, 30);
         editButton = new Button("Edit");
-        editButton.setPrefSize(100,30);
+        editButton.setPrefSize(100, 30);
 
         moviesTableView = new TableView<>();
         moviesTableView.setPrefHeight(435);
@@ -55,14 +55,14 @@ public class ManageMovieScene {
         durationColumn.setCellValueFactory(new PropertyValueFactory<>("duration"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
         genreColumn.setCellValueFactory(new PropertyValueFactory<>("genre"));
-        moviesTableView.getColumns().addAll(nameColumn,durationColumn,priceColumn,genreColumn);
+        moviesTableView.getColumns().addAll(nameColumn, durationColumn, priceColumn, genreColumn);
 
         Region buttonReg = new Region();
         buttonReg.setPrefWidth(200);
 
-        HBox buttonHBox = new HBox(20,buttonReg,addButton,removeButton,infoButton,editButton);
+        HBox buttonHBox = new HBox(20, buttonReg, addButton, removeButton, infoButton, editButton);
 
-        VBox vBox = new VBox(30,moviesTableView,buttonHBox);
+        VBox vBox = new VBox(30, moviesTableView, buttonHBox);
 
         root = new BorderPane();
         root.setCenter(vBox);

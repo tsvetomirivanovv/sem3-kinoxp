@@ -2,7 +2,6 @@ package PresentationLayer;
 
 import ApplicationLayer.AddSceneController;
 import ApplicationLayer.DataTypes.Movie;
-import Kino.KinoXP;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -27,22 +26,22 @@ public class AddButtonScene {
     private Scene scene;
     private VBox vBoxLabel, vBoxTextField;
     private HBox hBox, hBoxButton;
-    private Label name,duration,price,actors,description,cover,agelimit, coverPath, genre, rating;
+    private Label name, duration, price, actors, description, cover, agelimit, coverPath, genre, rating;
     private TextField textFieldName, textFieldDuration, textFieldPrice, textFieldActors, textFieldDescription, textFieldAgeLimit, textFieldGenre, textFieldRating;
     private Button chooseFileButton, confirmButton;
     private Movie movie;
 
 
-    public void setAddScene (Movie mov, String addOrEdit){
+    public void setAddScene(Movie mov, String addOrEdit) {
         window = new Stage();
 
         // Initializing the Labels, Buttons and stuff
         borderPane = new BorderPane();
-        borderPane.setPadding(new Insets(10,10,10,10));
+        borderPane.setPadding(new Insets(10, 10, 10, 10));
         vBoxLabel = new VBox(20);
-        vBoxLabel.setPadding(new Insets(40,40,40,40)); // LABEL VBOX
+        vBoxLabel.setPadding(new Insets(40, 40, 40, 40)); // LABEL VBOX
         vBoxTextField = new VBox(9);
-        vBoxTextField.setPadding(new Insets(40,40,40,40)); // TEXTFIELD VBOX
+        vBoxTextField.setPadding(new Insets(40, 40, 40, 40)); // TEXTFIELD VBOX
 
         hBoxButton = new HBox(9); // BUTTON HBOX
         hBox = new HBox(); // MAIN HBOX
@@ -88,11 +87,11 @@ public class AddButtonScene {
 
         confirmButton = new Button("OK");
 
-        vBoxLabel.getChildren().addAll(name,duration,price,actors,description,agelimit,genre, rating,cover); // LABELS VBOX
-        vBoxTextField.getChildren().addAll(textFieldName,textFieldDuration,textFieldPrice,textFieldActors,textFieldDescription,textFieldAgeLimit, textFieldGenre , textFieldRating,coverPath); // TEXFIELDS VBOX
+        vBoxLabel.getChildren().addAll(name, duration, price, actors, description, agelimit, genre, rating, cover); // LABELS VBOX
+        vBoxTextField.getChildren().addAll(textFieldName, textFieldDuration, textFieldPrice, textFieldActors, textFieldDescription, textFieldAgeLimit, textFieldGenre, textFieldRating, coverPath); // TEXFIELDS VBOX
 
-        hBox.getChildren().addAll(vBoxLabel,vBoxTextField);
-        hBoxButton.getChildren().addAll(chooseFileButton,confirmButton);
+        hBox.getChildren().addAll(vBoxLabel, vBoxTextField);
+        hBoxButton.getChildren().addAll(chooseFileButton, confirmButton);
         hBoxButton.setAlignment(Pos.BOTTOM_RIGHT);
 
         borderPane.setCenter(hBox);
@@ -103,20 +102,17 @@ public class AddButtonScene {
 
         // Making functionality for the buttons
         chooseFileButton.setOnAction(e -> {
-            selectedFile = coverChooser.showOpenDialog(KinoXP.window);
+            selectedFile = coverChooser.showOpenDialog(window);
             String path = selectedFile.toString();
             coverPath.setText(path);
 
         });
-/*
-        confirmButton.setOnAction(e -> addSceneController.saveData(textFieldName.getText(), Integer.parseInt(textFieldDuration.getText()), Double.parseDouble(textFieldPrice.getText()),
-                textFieldActors.getText(), textFieldDescription.getText(), coverPath.getText(),textFieldAgeLimit.getText(),textFieldGenre.getText(),textFieldRating.getText()));
-*/
+
         //setting the movie
         setMovie(mov);
-        String holdName = movie.getName();
+        String holdName = movie.getName(); //this will hold the current movie_name to be used in the database update() method
 
-        confirmButton.setOnAction(event -> {
+        confirmButton.setOnAction(event -> { //sets the action based on functionality needed (add/edit)
             //get the modified fields for the movie
             movie.setName(textFieldName.getText());
             movie.setDuration(Integer.parseInt(textFieldDuration.getText()));
@@ -142,7 +138,7 @@ public class AddButtonScene {
         });
 
         // Setting the scene and the stage
-        scene = new Scene(borderPane,600,500);
+        scene = new Scene(borderPane, 600, 500);
         window.setScene(scene);
         window.show();
     }

@@ -17,11 +17,9 @@ public class AddSceneController {
     }
 
     public void editMovie(Movie movie, String holdName) {
-        // add the new movie to the global ObservableList and DB
-        int listIndex = KinoXP.movieList.indexOf(movie);
-        System.out.println("actual index: " + listIndex);
+        int listIndex = KinoXP.movieList.indexOf(movie); //holds the index in the ObsArrayList
 
-        KinoXP.movieList.set(listIndex, movie);
+        KinoXP.movieList.set(listIndex, movie); //update the arraylist
         DBMovies dbMovies = new DBMovies();
         dbMovies.update(movie, holdName);
     }

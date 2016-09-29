@@ -14,14 +14,14 @@ public class HomeScene {
     private BorderPane root;
     private Button manageMovieButton;
 
-    public Scene setHomeScene(){
+    public Scene setHomeScene() {
 
         manageMovieButton = new Button("Manage movies");
 
         root = new BorderPane();
         root.setCenter(manageMovieButton);
 
-        homeScene = new Scene(root,500,500);
+        homeScene = new Scene(root, 500, 500);
 
         // make an instantiation of the Controller
         HomeSceneController homeSceneController = new HomeSceneController();

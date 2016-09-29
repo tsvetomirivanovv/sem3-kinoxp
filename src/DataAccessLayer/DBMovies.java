@@ -28,7 +28,7 @@ public class DBMovies {
 
             ResultSet rs = stmt.executeQuery(sql);
 
-            while(rs.next()){
+            while (rs.next()) {
                 Movie movie = new Movie();
                 movie.setName(rs.getString("movie_name"));
                 movie.setDuration(rs.getInt("movie_duration"));
@@ -42,7 +42,7 @@ public class DBMovies {
 
                 movies.add(movie);
             }
-        }catch(SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return movies;
@@ -53,18 +53,18 @@ public class DBMovies {
         try {
             stmt = conn.createStatement();
             String sql = "insert into movies values\n" +
-                    "(default,\""+movie.getName()+"\",\""+movie.getDuration()+
-                    "\",\""+movie.getPrice()+"\",\""+movie.getActors()+"\",\""+movie.getDescription()
-                    +"\",\""+movie.getCoverPath()+"\",\""+movie.getAgeLimit()+"\",\""+movie.getGenre()
-                    +"\",\""+movie.getRating()+"\");";
+                    "(default,\"" + movie.getName() + "\",\"" + movie.getDuration() +
+                    "\",\"" + movie.getPrice() + "\",\"" + movie.getActors() + "\",\"" + movie.getDescription()
+                    + "\",\"" + movie.getCoverPath() + "\",\"" + movie.getAgeLimit() + "\",\"" + movie.getGenre()
+                    + "\",\"" + movie.getRating() + "\");";
             stmt.executeUpdate(sql);
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
     }
 
-    public void update(Movie movie, String holdName){
-        try{
+    public void update(Movie movie, String holdName) {
+        try {
             stmt = conn.createStatement();
             String sql = "UPDATE movies SET movie_name = '" + movie.getName() + "', movie_duration = " + movie.getDuration() +
                     ", movie_price = " + movie.getPrice() + ", movie_actors = '" + movie.getActors() + "', movie_description = '" +
@@ -72,23 +72,19 @@ public class DBMovies {
                     movie.getAgeLimit() + "', movie_genre = '" + movie.getGenre() + "', movie_rating = '" +
                     movie.getRating() + "' WHERE movie_name = '" + holdName + "';";
 
-            System.out.println("UPDATE SQL: ");
-            System.out.println(sql);
             stmt.executeUpdate(sql);
-        }
-
-        catch(SQLException ex){
+        } catch (SQLException ex) {
             ex.printStackTrace();
         }
     }
 
-    public void remove(Movie movie){
+    public void remove(Movie movie) {
 
-        try{
+        try {
             stmt = conn.createStatement();
-            String sql = "delete from movies where movie_name=\""+movie.getName()+"\"";
+            String sql = "delete from movies where movie_name=\"" + movie.getName() + "\"";
             stmt.executeUpdate(sql);
-        }catch(SQLException ex){
+        } catch (SQLException ex) {
             ex.printStackTrace();
         }
     }

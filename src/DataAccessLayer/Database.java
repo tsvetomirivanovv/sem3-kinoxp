@@ -10,7 +10,11 @@ import java.sql.SQLException;
 public class Database {
     private static Connection conn = null;
 
-    public void connectDatabase(){
+    public static Connection getConn() {
+        return conn;
+    }
+
+    public void connectDatabase() {
         System.out.println("-------- MySQL JDBC Connection Testing ------------");
 
         try {
@@ -36,8 +40,5 @@ public class Database {
         } else {
             System.out.println("Failed to make connection!");
         }
-    }
-    public static Connection getConn() {
-        return conn;
     }
 }

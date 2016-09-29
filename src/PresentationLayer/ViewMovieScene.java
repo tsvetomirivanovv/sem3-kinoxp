@@ -32,26 +32,26 @@ public class ViewMovieScene {
     private TextField nameTF, durationTF, priceTF, actorsTF,
             descriptionTF, genreTF, ratingTF, ageLimitTF;
 
-    public void setInfoScene(Movie movie){
+    public void setInfoScene(Movie movie) {
 
         window = new Stage();
 
         // setting the labels and stuff
-        image = new Image("file:D:\\School related\\SEM 3\\SWD\\KinoXP -Mand. Ass. 1\\board1.png",200,200,false,false);
+        image = new Image("file:D:\\School related\\SEM 3\\SWD\\KinoXP -Mand. Ass. 1\\board1.png", 200, 200, false, false);
         imageView = new ImageView(image);
 
-        name = new Label("Name: "+movie.getName());
-        duration = new Label("Duration: "+movie.getDuration()+" min");
-        price = new Label("Price: "+movie.getPrice()+" kr");
-        actors = new Label("Actors: "+movie.getActors());
-        description = new Label("Description: "+movie.getDescription());
-        genre = new Label("Genre: "+ movie.getGenre());
-        rating = new Label("Rating: "+ movie.getRating()+" (IMDB)");
-        ageLimit = new Label("Age limit: "+movie.getAgeLimit());
+        name = new Label("Name: " + movie.getName());
+        duration = new Label("Duration: " + movie.getDuration() + " min");
+        price = new Label("Price: " + movie.getPrice() + " kr");
+        actors = new Label("Actors: " + movie.getActors());
+        description = new Label("Description: " + movie.getDescription());
+        genre = new Label("Genre: " + movie.getGenre());
+        rating = new Label("Rating: " + movie.getRating() + " (IMDB)");
+        ageLimit = new Label("Age limit: " + movie.getAgeLimit());
 
-        VBox informationBox = new VBox(10,name,duration,price,actors,genre,rating,ageLimit);
-        HBox imageAndInformation = new HBox(50,imageView,informationBox);
-        VBox centerVBox = new VBox(20,imageAndInformation,description);
+        VBox informationBox = new VBox(10, name, duration, price, actors, genre, rating, ageLimit);
+        HBox imageAndInformation = new HBox(50, imageView, informationBox);
+        VBox centerVBox = new VBox(20, imageAndInformation, description);
 
         Region leftReg = new Region();
         leftReg.setPrefWidth(50);

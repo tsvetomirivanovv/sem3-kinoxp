@@ -11,8 +11,7 @@ import PresentationLayer.ViewMovieScene;
  */
 public class ManageMovieController {
 
-    public static void removeMovie (Movie movie){
-
+    public static void removeMovie(Movie movie) {
         // remove the movie from the global ObservableList and then from DB
         DBMovies dbMovies = new DBMovies();
         KinoXP.movieList.remove(movie);
@@ -20,17 +19,19 @@ public class ManageMovieController {
     }
 
     public void addMovie() {
+        //shows the AddButtonScene with blank fields
         AddButtonScene addButtonScene = new AddButtonScene();
         Movie mov = new Movie();
         addButtonScene.setAddScene(mov, "add");
     }
 
     public void editMovie(Movie mov) {
+        //shows the AddButtonScene with populated fields
         AddButtonScene addButtonScene = new AddButtonScene();
         addButtonScene.setAddScene(mov, "edit");
     }
 
-    public void showInfoScene(Movie movie){
+    public void showInfoScene(Movie movie) {
         ViewMovieScene viewMovieScene = new ViewMovieScene();
         viewMovieScene.setInfoScene(movie);
     }

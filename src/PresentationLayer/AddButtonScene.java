@@ -37,9 +37,9 @@ public class AddButtonScene {
         // Initializing the Labels, Buttons and stuff
         borderPane = new BorderPane();
         borderPane.setPadding(new Insets(10,10,10,10));
-        vBoxLabel = new VBox(16);
+        vBoxLabel = new VBox(20);
         vBoxLabel.setPadding(new Insets(40,40,40,40)); // LABEL VBOX
-        vBoxTextField = new VBox(8);
+        vBoxTextField = new VBox(9);
         vBoxTextField.setPadding(new Insets(40,40,40,40)); // TEXTFIELD VBOX
 
         hBoxButton = new HBox(9); // BUTTON HBOX
@@ -102,7 +102,8 @@ public class AddButtonScene {
         // Making functionality for the buttons
         chooseFileButton.setOnAction(e -> {
             selectedFile = coverChooser.showOpenDialog(KinoXP.window);
-            coverPath.setText(selectedFile.toString());
+            String path = selectedFile.toString();
+            coverPath.setText(path.substring(path.lastIndexOf("\\")));
 
         });
         confirmButton.setOnAction(e -> addSceneController.saveData(textFieldName.getText(), Integer.parseInt(textFieldDuration.getText()), Double.parseDouble(textFieldPrice.getText()),

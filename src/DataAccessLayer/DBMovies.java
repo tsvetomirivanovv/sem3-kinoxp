@@ -63,6 +63,25 @@ public class DBMovies {
         }
     }
 
+    public void update(Movie movie){
+        try{
+            stmt = conn.createStatement();
+            String sql = "UPDATE movies SET movie_name = '" + movie.getName() + "', movie_duration = " + movie.getDuration() +
+                    ", movie_price = " + movie.getPrice() + ", movie_actors = '" + movie.getActors() + "', movie_description = '" +
+                    movie.getDescription() + "', movie_cover_path = '" + movie.getCoverPath() + "', movie_age_limit = '" +
+                    movie.getAgeLimit() + "', movie_genre = '" + movie.getGenre() + "', movie_rating = '" +
+                    movie.getRating() + "' WHERE movie_name = '" + movie.getName() + "';";
+
+            System.out.println("UPDATE SQL: ");
+            System.out.println(sql);
+            stmt.executeUpdate(sql);
+        }
+
+        catch(SQLException ex){
+            ex.printStackTrace();
+        }
+    }
+
     public void remove(Movie movie){
 
         try{

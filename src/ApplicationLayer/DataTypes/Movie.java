@@ -43,16 +43,14 @@ public class Movie {
         this.rating = new SimpleStringProperty(rating);
     }
 
+    // GETTERS
+
     public String getName() {
         return name.get();
     }
 
     public StringProperty nameProperty() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = new SimpleStringProperty(name);
     }
 
     public String getRating() {
@@ -63,20 +61,12 @@ public class Movie {
         return rating;
     }
 
-    public void setRating(String rating) {
-        this.rating = new SimpleStringProperty(rating);
-    }
-
     public int getDuration() {
         return duration.get();
     }
 
     public IntegerProperty durationProperty() {
         return duration;
-    }
-
-    public void setDuration(int duration) {
-        this.duration = new SimpleIntegerProperty(duration);
     }
 
     public double getPrice() {
@@ -87,20 +77,12 @@ public class Movie {
         return price;
     }
 
-    public void setPrice(double price) {
-        this.price = new SimpleDoubleProperty(price);
-    }
-
     public String getActors() {
         return actors.get();
     }
 
     public StringProperty actorsProperty() {
         return actors;
-    }
-
-    public void setActors(String actors) {
-        this.actors = new SimpleStringProperty(actors);
     }
 
     public String getDescription() {
@@ -111,20 +93,12 @@ public class Movie {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = new SimpleStringProperty(description);
-    }
-
     public String getCoverPath() {
         return coverPath.get();
     }
 
     public StringProperty coverPathProperty() {
         return coverPath;
-    }
-
-    public void setCoverPath(String coverPath) {
-        this.coverPath = new SimpleStringProperty(coverPath);
     }
 
     public String getAgeLimit() {
@@ -135,16 +109,46 @@ public class Movie {
         return ageLimit;
     }
 
-    public void setAgeLimit(String ageLimit) {
-        this.ageLimit = new SimpleStringProperty(ageLimit);
-    }
-
     public String getGenre() {
         return genre.get();
     }
 
     public StringProperty genreProperty() {
         return genre;
+    }
+
+    // SETTERS
+
+    public void setName(String name) {
+        this.name = new SimpleStringProperty(name);
+    }
+
+    public void setRating(String rating) {
+        this.rating = new SimpleStringProperty(rating);
+    }
+
+    public void setDuration(int duration) {
+        this.duration = new SimpleIntegerProperty(duration);
+    }
+
+    public void setPrice(double price) {
+        this.price = new SimpleDoubleProperty(price);
+    }
+
+    public void setActors(String actors) {
+        this.actors = new SimpleStringProperty(actors);
+    }
+
+    public void setDescription(String description) {
+        this.description = new SimpleStringProperty(description);
+    }
+
+    public void setCoverPath(String coverPath) {
+        this.coverPath = new SimpleStringProperty(coverPath);
+    }
+
+    public void setAgeLimit(String ageLimit) {
+        this.ageLimit = new SimpleStringProperty(ageLimit);
     }
 
     public void setGenre(String genre) {

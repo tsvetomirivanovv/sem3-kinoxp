@@ -18,15 +18,15 @@ public class Movie {
     private StringProperty rating;
 
     public Movie() {
-        this.name = new SimpleStringProperty();
-        this.duration = new SimpleIntegerProperty();
-        this.price = new SimpleDoubleProperty();
-        this.actors = new SimpleStringProperty();
-        this.description = new SimpleStringProperty();
-        this.coverPath = new SimpleStringProperty();
-        this.ageLimit = new SimpleStringProperty();
-        this.genre = new SimpleStringProperty();
-        this.rating = new SimpleStringProperty();
+        this.name = new SimpleStringProperty("");
+        this.duration = new SimpleIntegerProperty(0);
+        this.price = new SimpleDoubleProperty(0);
+        this.actors = new SimpleStringProperty("");
+        this.description = new SimpleStringProperty("");
+        this.coverPath = new SimpleStringProperty("\\");
+        this.ageLimit = new SimpleStringProperty("");
+        this.genre = new SimpleStringProperty("");
+        this.rating = new SimpleStringProperty("");
     }
 
     public Movie(String name, int duration, double price, String actors,

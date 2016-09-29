@@ -1,6 +1,7 @@
 package PresentationLayer;
 
 import ApplicationLayer.AddSceneController;
+import ApplicationLayer.DataTypes.Movie;
 import Kino.KinoXP;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -29,9 +30,10 @@ public class AddButtonScene {
     private Label name,duration,price,actors,description,cover,agelimit, coverPath, genre, rating;
     private TextField textFieldName, textFieldDuration, textFieldPrice, textFieldActors, textFieldDescription, textFieldAgeLimit, textFieldGenre, textFieldRating;
     private Button chooseFileButton, confirmButton;
+    private Movie movie;
 
 
-    public void setAddScene (){
+    public void setAddScene (Movie mov, String addOrEdit){
         window = new Stage();
 
         // Initializing the Labels, Buttons and stuff
@@ -103,15 +105,62 @@ public class AddButtonScene {
         chooseFileButton.setOnAction(e -> {
             selectedFile = coverChooser.showOpenDialog(KinoXP.window);
             String path = selectedFile.toString();
-            coverPath.setText(path.substring(path.lastIndexOf("\\")));
+            coverPath.setText(path);
 
         });
+/*
         confirmButton.setOnAction(e -> addSceneController.saveData(textFieldName.getText(), Integer.parseInt(textFieldDuration.getText()), Double.parseDouble(textFieldPrice.getText()),
                 textFieldActors.getText(), textFieldDescription.getText(), coverPath.getText(),textFieldAgeLimit.getText(),textFieldGenre.getText(),textFieldRating.getText()));
+*/
+        //setting the movie
+        setMovie(mov);
+        String holdName = movie.getName();
+
+        confirmButton.setOnAction(event -> {
+            //get the modified fields for the movie
+            movie.setName(textFieldName.getText());
+            movie.setDuration(Integer.parseInt(textFieldDuration.getText()));
+            movie.setPrice(Double.parseDouble(textFieldPrice.getText()));
+            movie.setActors(textFieldActors.getText());
+            movie.setDescription(textFieldDescription.getText());
+            movie.setCoverPath(coverPath.getText());
+            movie.setAgeLimit(textFieldAgeLimit.getText());
+            movie.setGenre(textFieldGenre.getText());
+            movie.setRating(textFieldRating.getText());
+
+            switch (addOrEdit) {
+                case "add":
+                    addSceneController.addMovie(movie);
+                    window.close();
+                    break;
+
+                case "edit":
+                    addSceneController.editMovie(movie, holdName);
+                    window.close();
+                    break;
+            }
+        });
 
         // Setting the scene and the stage
         scene = new Scene(borderPane,600,500);
         window.setScene(scene);
         window.show();
     }
+
+
+    //method to set the movie of which details are displayed
+    public void setMovie(Movie mov) {
+        movie = mov;
+
+        textFieldName.setText(movie.getName());
+        textFieldDuration.setText(Integer.toString(movie.getDuration()));
+        textFieldPrice.setText(Double.toString(movie.getPrice()));
+        textFieldActors.setText(movie.getActors());
+        textFieldDescription.setText(movie.getDescription());
+        coverPath.setText(movie.getCoverPath());
+        textFieldAgeLimit.setText(movie.getAgeLimit());
+        textFieldGenre.setText(movie.getGenre());
+        textFieldRating.setText(movie.getRating());
+    }
+
 }

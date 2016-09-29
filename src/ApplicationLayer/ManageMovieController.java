@@ -19,9 +19,15 @@ public class ManageMovieController {
         dbMovies.remove(movie);
     }
 
-    public void showAddScene() {
+    public void addMovie() {
         AddButtonScene addButtonScene = new AddButtonScene();
-        addButtonScene.setAddScene();
+        Movie mov = new Movie();
+        addButtonScene.setAddScene(mov, "add");
+    }
+
+    public void editMovie(Movie mov) {
+        AddButtonScene addButtonScene = new AddButtonScene();
+        addButtonScene.setAddScene(mov, "edit");
     }
 
     public void showInfoScene(Movie movie){

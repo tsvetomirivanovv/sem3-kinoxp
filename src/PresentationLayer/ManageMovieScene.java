@@ -73,9 +73,10 @@ public class ManageMovieScene {
         ManageMovieController manageMovieController = new ManageMovieController();
 
         // make functionality for the buttons
-        addButton.setOnAction(e -> manageMovieController.showAddScene());
+        addButton.setOnAction(e -> manageMovieController.addMovie());
         infoButton.setOnAction(e -> manageMovieController.showInfoScene(moviesTableView.getSelectionModel().getSelectedItem()));
         removeButton.setOnAction(e -> manageMovieController.removeMovie(moviesTableView.getSelectionModel().getSelectedItem()));
+        editButton.setOnAction(event -> manageMovieController.editMovie(moviesTableView.getSelectionModel().getSelectedItem()));
 
         return manageMovieScene;
     }

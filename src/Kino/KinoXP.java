@@ -41,6 +41,9 @@ public class KinoXP extends Application {
 
         DBMovies dbMovies = new DBMovies();
         movieList = dbMovies.readAll();
+        for (Movie mov : movieList) {
+            System.out.println(movieList.indexOf(mov) + ". " + mov.getName());
+        }
     }
 
     public static void main(String[] args) {

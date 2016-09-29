@@ -1,5 +1,6 @@
 package PresentationLayer;
 
+import ApplicationLayer.DataTypes.Movie;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
@@ -17,12 +18,12 @@ public class ManageMovieScene {
     private Scene manageMovieScene;
     private BorderPane root;
     private Button addButton, removeButton, infoButton, editButton;
-    public static TableView<Object> moviesTableView;
-    private TableColumn<Object, Integer> movieIdColumn;
-    private TableColumn<Object, String> titleColumn;
-    private TableColumn<Object, String> durationColumn;
-    private TableColumn<Object, Double> priceColumn;
-    private TableColumn<Object, String> genreColumn;
+    public static TableView<Movie> moviesTableView;
+    private TableColumn<Movie, Integer> movieIdColumn;
+    private TableColumn<Movie, String> titleColumn;
+    private TableColumn<Movie, Integer> durationColumn;
+    private TableColumn<Movie, Double> priceColumn;
+    private TableColumn<Movie, String> genreColumn;
 
     public Scene setManageMovieScene(){
 

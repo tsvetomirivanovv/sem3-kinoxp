@@ -1,9 +1,6 @@
 package ApplicationLayer.DataTypes;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.*;
 
 /**
  * Created by Dana on 28-Sep-16.
@@ -12,7 +9,7 @@ public class Movie {
 
     private StringProperty name;
     private IntegerProperty duration;
-    private IntegerProperty price;
+    private DoubleProperty price;
     private StringProperty actors;
     private StringProperty description;
     private StringProperty coverPath;
@@ -29,7 +26,7 @@ public class Movie {
                  String genre, String rating) {
         this.name = new SimpleStringProperty(name);
         this.duration = new SimpleIntegerProperty(duration);
-        this.price = new SimpleIntegerProperty(price);
+        this.price = new SimpleDoubleProperty(price);
         this.actors = new SimpleStringProperty(actors);
         this.description = new SimpleStringProperty(description);
         this.coverPath = new SimpleStringProperty(coverPath);
@@ -47,7 +44,7 @@ public class Movie {
     }
 
     public void setName(String name) {
-        this.name.set(name);
+        this.name = new SimpleStringProperty(name);
     }
 
     public String getRating() {
@@ -59,7 +56,7 @@ public class Movie {
     }
 
     public void setRating(String rating) {
-        this.rating.set(rating);
+        this.rating = new SimpleStringProperty(rating);
     }
 
     public int getDuration() {
@@ -71,19 +68,19 @@ public class Movie {
     }
 
     public void setDuration(int duration) {
-        this.duration.set(duration);
+        this.duration = new SimpleIntegerProperty(duration);
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price.get();
     }
 
-    public IntegerProperty priceProperty() {
+    public DoubleProperty priceProperty() {
         return price;
     }
 
-    public void setPrice(int price) {
-        this.price.set(price);
+    public void setPrice(double price) {
+        this.price = new SimpleDoubleProperty(price);
     }
 
     public String getActors() {
@@ -95,7 +92,7 @@ public class Movie {
     }
 
     public void setActors(String actors) {
-        this.actors.set(actors);
+        this.actors = new SimpleStringProperty(actors);
     }
 
     public String getDescription() {
@@ -107,7 +104,7 @@ public class Movie {
     }
 
     public void setDescription(String description) {
-        this.description.set(description);
+        this.description = new SimpleStringProperty(description);
     }
 
     public String getCoverPath() {
@@ -119,7 +116,7 @@ public class Movie {
     }
 
     public void setCoverPath(String coverPath) {
-        this.coverPath.set(coverPath);
+        this.coverPath = new SimpleStringProperty(coverPath);
     }
 
     public String getAgeLimit() {
@@ -131,7 +128,7 @@ public class Movie {
     }
 
     public void setAgeLimit(String ageLimit) {
-        this.ageLimit.set(ageLimit);
+        this.ageLimit = new SimpleStringProperty(ageLimit);
     }
 
     public String getGenre() {
@@ -143,7 +140,7 @@ public class Movie {
     }
 
     public void setGenre(String genre) {
-        this.genre.set(genre);
+        this.genre = new SimpleStringProperty(genre);
     }
 
     @Override

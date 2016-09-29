@@ -1,6 +1,7 @@
 package PresentationLayer;
 
 import ApplicationLayer.DataTypes.Movie;
+import ApplicationLayer.ManageMovieController;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
@@ -63,6 +64,9 @@ public class ManageMovieScene {
         root.setCenter(vBox);
 
         manageMovieScene = new Scene(root, 700, 500);
+
+        ManageMovieController manageMovieController = new ManageMovieController();
+        addButton.setOnAction(event -> manageMovieController.handleAdd());
 
         return manageMovieScene;
     }

@@ -29,7 +29,7 @@ public class Movie {
         this.rating = new SimpleStringProperty();
     }
 
-    public Movie(String name, int duration, int price, String actors,
+    public Movie(String name, int duration, double price, String actors,
                  String description, String coverPath, String ageLimit,
                  String genre, String rating) {
         this.name = new SimpleStringProperty(name);

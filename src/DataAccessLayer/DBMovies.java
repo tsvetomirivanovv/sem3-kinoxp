@@ -56,8 +56,9 @@ public class DBMovies {
                     "(default,\""+movie.getName()+"\",\""+movie.getDuration()+
                     "\",\""+movie.getPrice()+"\",\""+movie.getActors()+"\",\""+movie.getDescription()
                     +"\",\""+movie.getCoverPath()+"\",\""+movie.getAgeLimit()+"\",\""+movie.getGenre()
-                    +"\",\""+movie.getRating()+"\")";
+                    +"\",\""+movie.getRating()+"\");";
 
+            System.err.println(sql);
             stmt.executeUpdate(sql);
         } catch (SQLException ex) {
             ex.printStackTrace();

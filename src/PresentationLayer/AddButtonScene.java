@@ -1,6 +1,7 @@
 package PresentationLayer;
 
 import ApplicationLayer.AddSceneController;
+import Kino.KinoXP;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -19,7 +20,7 @@ import javafx.stage.Stage;
 import java.io.File;
 
 
-public class AddButtonScene extends Application {
+public class AddButtonScene {
 
     private BorderPane borderPane;
     private FileChooser coverChooser;
@@ -27,13 +28,12 @@ public class AddButtonScene extends Application {
     private Scene scene;
     private VBox vBoxLabel, vBoxTextField;
     private HBox hBox, hBoxButton;
-    private Label name,duration,price,actors,description,cover,agelimit, coverPath;
-    private TextField textFieldName, textFieldDuration, textFieldPrice, textFieldActors, textFieldDescription, textFieldAgeLimit;
+    private Label name,duration,price,actors,description,cover,agelimit, coverPath, genre, rating;
+    private TextField textFieldName, textFieldDuration, textFieldPrice, textFieldActors, textFieldDescription, textFieldAgeLimit, textFieldGenre, textFieldRating;
     private Button chooseFileButton, confirmButton;
 
 
-    @Override
-    public void start(Stage primaryStage) throws Exception {
+    public Scene setAddScene (){
         borderPane = new BorderPane();
         borderPane.setPadding(new Insets(10,10,10,10));
         vBoxLabel = new VBox(16);
@@ -70,6 +70,15 @@ public class AddButtonScene extends Application {
         textFieldAgeLimit.setPromptText("Write age limit here ... ");
 
 
+        genre = new Label("Genre: ");
+        textFieldGenre = new TextField();
+        textFieldGenre.setPromptText("Write genre here ... ");
+
+        rating = new Label("Rating: ");
+        textFieldRating = new TextField();
+        textFieldRating.setPromptText("Write rating here ... ");
+
+
 
         cover = new Label("Cover: ");
         coverPath = new Label();
@@ -78,15 +87,15 @@ public class AddButtonScene extends Application {
         chooseFileButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                selectedFile = coverChooser.showOpenDialog(primaryStage);
+                selectedFile = coverChooser.showOpenDialog(KinoXP.window);
                 coverPath.setText(selectedFile.toString());
 
             }
         });
         confirmButton = new Button("OK");
 
-        vBoxLabel.getChildren().addAll(name,duration,price,actors,description,agelimit,cover); // LABELS VBOX
-        vBoxTextField.getChildren().addAll(textFieldName,textFieldDuration,textFieldPrice,textFieldActors,textFieldDescription,textFieldAgeLimit,coverPath); // TEXFIELDS VBOX
+        vBoxLabel.getChildren().addAll(name,duration,price,actors,description,agelimit,genre, rating,cover); // LABELS VBOX
+        vBoxTextField.getChildren().addAll(textFieldName,textFieldDuration,textFieldPrice,textFieldActors,textFieldDescription,textFieldAgeLimit, textFieldGenre , textFieldRating,coverPath); // TEXFIELDS VBOX
 
         hBox.getChildren().addAll(vBoxLabel,vBoxTextField);
         hBoxButton.getChildren().addAll(chooseFileButton,confirmButton);
@@ -96,10 +105,11 @@ public class AddButtonScene extends Application {
         borderPane.setBottom(hBoxButton);
 
         AddSceneController addSceneController = new AddSceneController();
-        confirmButton.setOnAction(e -> addSceneController.saveData());
+        confirmButton.setOnAction(e -> addSceneController.saveData(textFieldName.getText(), Integer.parseInt(textFieldDuration.getText()), Double.parseDouble(textFieldPrice.getText()),
+                textFieldActors.getText(), textFieldDescription.getText(), coverPath.getText(),textFieldAgeLimit.getText(),textFieldGenre.getText(),textFieldRating.getText()));
 
-        scene = new Scene(borderPane,550,400);
-        primaryStage.setScene(scene);
-        primaryStage.show();
+        scene = new Scene(borderPane,600,500);
+
+        return scene;
     }
 }

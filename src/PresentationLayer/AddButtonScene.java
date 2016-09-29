@@ -2,9 +2,6 @@ package PresentationLayer;
 
 import ApplicationLayer.AddSceneController;
 import Kino.KinoXP;
-import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -22,6 +19,7 @@ import java.io.File;
 
 public class AddButtonScene {
 
+    private Stage window;
     private BorderPane borderPane;
     private FileChooser coverChooser;
     private File selectedFile;
@@ -33,7 +31,10 @@ public class AddButtonScene {
     private Button chooseFileButton, confirmButton;
 
 
-    public Scene setAddScene (){
+    public void setAddScene (){
+        window = new Stage();
+
+        // Initializing the Labels, Buttons and stuff
         borderPane = new BorderPane();
         borderPane.setPadding(new Insets(10,10,10,10));
         vBoxLabel = new VBox(16);
@@ -78,20 +79,11 @@ public class AddButtonScene {
         textFieldRating = new TextField();
         textFieldRating.setPromptText("Write rating here ... ");
 
-
-
         cover = new Label("Cover: ");
         coverPath = new Label();
         chooseFileButton = new Button("Choose cover image");
         coverChooser = new FileChooser();
-        chooseFileButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                selectedFile = coverChooser.showOpenDialog(KinoXP.window);
-                coverPath.setText(selectedFile.toString());
 
-            }
-        });
         confirmButton = new Button("OK");
 
         vBoxLabel.getChildren().addAll(name,duration,price,actors,description,agelimit,genre, rating,cover); // LABELS VBOX
@@ -104,12 +96,21 @@ public class AddButtonScene {
         borderPane.setCenter(hBox);
         borderPane.setBottom(hBoxButton);
 
+        // make an instantiation of the Controller
         AddSceneController addSceneController = new AddSceneController();
+
+        // Making functionality for the buttons
+        chooseFileButton.setOnAction(e -> {
+            selectedFile = coverChooser.showOpenDialog(KinoXP.window);
+            coverPath.setText(selectedFile.toString());
+
+        });
         confirmButton.setOnAction(e -> addSceneController.saveData(textFieldName.getText(), Integer.parseInt(textFieldDuration.getText()), Double.parseDouble(textFieldPrice.getText()),
                 textFieldActors.getText(), textFieldDescription.getText(), coverPath.getText(),textFieldAgeLimit.getText(),textFieldGenre.getText(),textFieldRating.getText()));
 
+        // Setting the scene and the stage
         scene = new Scene(borderPane,600,500);
-
-        return scene;
+        window.setScene(scene);
+        window.show();
     }
 }

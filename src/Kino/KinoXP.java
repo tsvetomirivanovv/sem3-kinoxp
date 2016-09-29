@@ -4,11 +4,9 @@ import ApplicationLayer.DataTypes.Movie;
 import DataAccessLayer.DBMovies;
 import DataAccessLayer.Database;
 import PresentationLayer.HomeScene;
-import PresentationLayer.ManageMovieScene;
 import javafx.application.Application;
+import javafx.collections.ObservableList;
 import javafx.stage.Stage;
-
-import java.util.ArrayList;
 
 /**
  * Created by Tsvetomir on 9/28/2016.
@@ -17,7 +15,8 @@ public class KinoXP extends Application {
 
     public static Stage window;
 
-    public static ArrayList<Movie> movieList;
+    // global list for storing data from Database
+    public static ObservableList<Movie> movieList;
 
     public void start(Stage primaryStage) throws Exception{
         window = primaryStage;
@@ -31,18 +30,16 @@ public class KinoXP extends Application {
 
         // make an instantiation of the class HomeScene
         HomeScene homeScene = new HomeScene();
-        ManageMovieScene manageMovieScene = new ManageMovieScene();
 
         window.setTitle("KinoXP");
         window.setScene(homeScene.setHomeScene());
-        //window.setScene(manageMovieScene.setManageMovieScene());
         window.show();
 
     }
 
     public void fillArrayLists(){
-        DBMovies dbMovies = new DBMovies();
 
+        DBMovies dbMovies = new DBMovies();
         movieList = dbMovies.readAll();
     }
 

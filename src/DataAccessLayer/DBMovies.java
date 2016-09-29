@@ -1,12 +1,13 @@
 package DataAccessLayer;
 
 import ApplicationLayer.DataTypes.Movie;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 
 /**
  * Created by Andrei on 29/09/2016.
@@ -17,8 +18,8 @@ public class DBMovies {
     private static Connection conn = Database.getConn();
     private static Statement stmt = null;
 
-    public ArrayList readAll() {
-        ArrayList<Movie> movies = new ArrayList<>();
+    public ObservableList readAll() {
+        ObservableList<Movie> movies = FXCollections.observableArrayList();
         movies.clear();
         try {
             String sql = "SELECT * FROM movies";
@@ -49,7 +50,6 @@ public class DBMovies {
 
     public void insert(Movie movie) {
 
-        Connection conn = Database.getConn();
         try {
             stmt = conn.createStatement();
             String sql = "insert into movies values\n" +
@@ -57,10 +57,19 @@ public class DBMovies {
                     "\",\""+movie.getPrice()+"\",\""+movie.getActors()+"\",\""+movie.getDescription()
                     +"\",\""+movie.getCoverPath()+"\",\""+movie.getAgeLimit()+"\",\""+movie.getGenre()
                     +"\",\""+movie.getRating()+"\");";
-
-            System.err.println(sql);
             stmt.executeUpdate(sql);
         } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public void remove(Movie movie){
+
+        try{
+            stmt = conn.createStatement();
+            String sql = "delete from movies where movie_name=\""+movie.getName()+"\"";
+            stmt.executeUpdate(sql);
+        }catch(SQLException ex){
             ex.printStackTrace();
         }
     }

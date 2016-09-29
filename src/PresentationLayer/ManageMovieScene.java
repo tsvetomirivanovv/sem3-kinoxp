@@ -1,13 +1,19 @@
 package PresentationLayer;
 
+import ApplicationLayer.DataTypes.Movie;
+import ApplicationLayer.ManageMovieController;
+import Kino.KinoXP;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+
+import java.util.Map;
 
 /**
  * Created by Tsvetomir on 9/28/2016.
@@ -18,13 +24,17 @@ public class ManageMovieScene {
     private BorderPane root;
     private Button addButton, removeButton, infoButton, editButton;
     public static TableView<Object> moviesTableView;
-    private TableColumn<Object, Integer> movieIdColumn;
     private TableColumn<Object, String> titleColumn;
-    private TableColumn<Object, String> durationColumn;
+    private TableColumn<Object, Integer> durationColumn;
     private TableColumn<Object, Double> priceColumn;
     private TableColumn<Object, String> genreColumn;
 
+
+
+
     public Scene setManageMovieScene(){
+        KinoXP.movieList.add(new Movie("Jason Bourne",95,250,"Matt Damon","Cool description","123","19","Action","4.5"));
+        KinoXP.movieList.add(new Movie("Jason Bourne",95,250,"Matt Damon","Cool description","123","19","Action","4.5"));
 
         addButton = new Button("Add");
         addButton.setPrefSize(100,30);
@@ -39,8 +49,6 @@ public class ManageMovieScene {
         moviesTableView.setPrefHeight(435);
         //moviesTableView.itemsProperty().setValue(movieList);
 
-        movieIdColumn = new TableColumn<>("Movie Id");
-        movieIdColumn.setMinWidth(120);
         titleColumn = new TableColumn<>("Title");
         titleColumn.setMinWidth(120);
         durationColumn = new TableColumn<>("Duration");
@@ -49,8 +57,13 @@ public class ManageMovieScene {
         priceColumn.setMinWidth(120);
         genreColumn = new TableColumn<>("Genre");
         genreColumn.setMinWidth(120);
-        moviesTableView.getColumns().addAll(movieIdColumn,titleColumn,durationColumn,priceColumn,genreColumn);
 
+        titleColumn.setCellValueFactory(new PropertyValueFactory<Object, String>("name"));
+        durationColumn.setCellValueFactory(new PropertyValueFactory<Object, Integer>("duration"));
+        priceColumn.setCellValueFactory(new PropertyValueFactory<Object, Double>("price"));
+        genreColumn.setCellValueFactory(new PropertyValueFactory<Object, String>("genre"));
+        moviesTableView.getColumns().addAll(titleColumn,durationColumn,priceColumn,genreColumn);
+        moviesTableView.itemsProperty().setValue(KinoXP.movieList);
         Region buttonReg = new Region();
         buttonReg.setPrefWidth(200);
 
@@ -63,6 +76,14 @@ public class ManageMovieScene {
 
         manageMovieScene = new Scene(root, 700, 500);
 
+        removeButton.setOnAction(event -> {
+            ManageMovieController.removeMovie(moviesTableView.getSelectionModel().getSelectedItem());
+
+        });
         return manageMovieScene;
+
+
+
     }
+
 }

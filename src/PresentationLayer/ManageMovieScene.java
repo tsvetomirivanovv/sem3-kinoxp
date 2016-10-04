@@ -3,11 +3,16 @@ package PresentationLayer;
 import ApplicationLayer.DataTypes.Movie;
 import ApplicationLayer.ManageMovieController;
 import Kino.KinoXP;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -21,6 +26,7 @@ public class ManageMovieScene {
     public static TableView<Movie> moviesTableView;
     private Scene manageMovieScene;
     private BorderPane root;
+    private TextField searchField;
     private Button addButton, removeButton, infoButton, editButton;
     private TableColumn<Movie, String> nameColumn;
     private TableColumn<Movie, Integer> durationColumn;
@@ -29,6 +35,8 @@ public class ManageMovieScene {
 
     public Scene setManageMovieScene() {
 
+        searchField = new TextField();
+        searchField.setPromptText("Search...");
         addButton = new Button("Add");
         addButton.setPrefSize(100, 30);
         removeButton = new Button("Remove");
@@ -60,7 +68,7 @@ public class ManageMovieScene {
         Region buttonReg = new Region();
         buttonReg.setPrefWidth(200);
 
-        HBox buttonHBox = new HBox(20, buttonReg, addButton, removeButton, infoButton, editButton);
+        HBox buttonHBox = new HBox(20, searchField, buttonReg, addButton, removeButton, infoButton, editButton);
 
         VBox vBox = new VBox(30, moviesTableView, buttonHBox);
 
@@ -77,6 +85,13 @@ public class ManageMovieScene {
         infoButton.setOnAction(e -> manageMovieController.showInfoScene(moviesTableView.getSelectionModel().getSelectedItem()));
         removeButton.setOnAction(e -> manageMovieController.removeMovie(moviesTableView.getSelectionModel().getSelectedItem()));
         editButton.setOnAction(event -> manageMovieController.editMovie(moviesTableView.getSelectionModel().getSelectedItem()));
+
+        // functionality for the search
+        searchField.setOnKeyPressed(event -> {
+            if (event.getCode() != null) {
+                manageMovieController.searchMovie(moviesTableView, searchField);
+            }
+        });
 
         return manageMovieScene;
     }

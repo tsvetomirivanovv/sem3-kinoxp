@@ -1,7 +1,11 @@
 package Kino;
 
+import ApplicationLayer.DataTypes.Booking;
 import ApplicationLayer.DataTypes.Movie;
+import ApplicationLayer.DataTypes.Schedule;
+import DataAccessLayer.DBBookings;
 import DataAccessLayer.DBMovies;
+import DataAccessLayer.DBSchedules;
 import DataAccessLayer.Database;
 import PresentationLayer.HomeScene;
 import javafx.application.Application;
@@ -17,6 +21,8 @@ public class KinoXP extends Application {
 
     // global list for storing data from Database
     public static ObservableList<Movie> movieList;
+    public static ObservableList<Schedule> scheduleList;
+    public static ObservableList<Booking> bookingList;
 
     public static void main(String[] args) {
         launch(args);
@@ -32,6 +38,10 @@ public class KinoXP extends Application {
         // fill all ArrayLists with data from the Database
         fillArrayLists();
 
+        System.out.println(movieList);
+        System.out.println(scheduleList);
+        System.out.println(bookingList);
+
         // make an instantiation of the class HomeScene
         HomeScene homeScene = new HomeScene();
 
@@ -44,7 +54,13 @@ public class KinoXP extends Application {
     public void fillArrayLists() {
 
         DBMovies dbMovies = new DBMovies();
+        DBSchedules dbSchedules = new DBSchedules();
+        DBBookings dbBookings = new DBBookings();
+
         movieList = dbMovies.readAll();
+        scheduleList = dbSchedules.readAll();
+        bookingList = dbBookings.readAll();
+
     }
 
 }

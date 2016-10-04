@@ -104,7 +104,6 @@ public class AddButtonScene {
         chooseFileButton.setOnAction(e -> {
             selectedFile = coverChooser.showOpenDialog(window);
             String path = selectedFile.toString();
-            movie.setCoverPath(path);
             coverPath.setText(path);
 
         });
@@ -120,6 +119,7 @@ public class AddButtonScene {
             movie.setPrice(Double.parseDouble(textFieldPrice.getText()));
             movie.setActors(textFieldActors.getText());
             movie.setDescription(textFieldDescription.getText());
+            movie.setCoverPath(coverPath.getText());
             movie.setAgeLimit(textFieldAgeLimit.getText());
             movie.setGenre(textFieldGenre.getText());
             movie.setRating(textFieldRating.getText());

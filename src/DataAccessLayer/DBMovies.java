@@ -4,7 +4,10 @@ import ApplicationLayer.DataTypes.Movie;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  * Created by Andrei on 29/09/2016.
@@ -13,7 +16,7 @@ public class DBMovies {
 
     //gets connection from database class
     private static Connection conn = Database.getConn();
-    private static PreparedStatement stmt = null;
+    private static Statement stmt = null;
 
     public ObservableList readAll() {
         ObservableList<Movie> movies = FXCollections.observableArrayList();
@@ -21,7 +24,8 @@ public class DBMovies {
         try {
             String sql = "SELECT * FROM movies";
 
-            stmt = conn.prepareStatement(sql);
+            stmt = conn.createStatement();
+
             ResultSet rs = stmt.executeQuery(sql);
 
             while (rs.next()) {
@@ -45,17 +49,15 @@ public class DBMovies {
     }
 
     public void insert(Movie movie) {
+
         try {
+            stmt = conn.createStatement();
             String sql = "insert into movies values\n" +
                     "(default,\"" + movie.getName() + "\",\"" + movie.getDuration() +
                     "\",\"" + movie.getPrice() + "\",\"" + movie.getActors() + "\",\"" + movie.getDescription()
-                    + "\", ?, \"" + movie.getAgeLimit() + "\",\"" + movie.getGenre()
+                    + "\",\"" + movie.getCoverPath() + "\",\"" + movie.getAgeLimit() + "\",\"" + movie.getGenre()
                     + "\",\"" + movie.getRating() + "\");";
-
-            stmt = conn.prepareStatement(sql);
-            stmt.setString(1, movie.getCoverPath());
-
-            stmt.executeUpdate();
+            stmt.executeUpdate(sql);
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
@@ -63,16 +65,14 @@ public class DBMovies {
 
     public void update(Movie movie, String holdName) {
         try {
+            stmt = conn.createStatement();
             String sql = "UPDATE movies SET movie_name = '" + movie.getName() + "', movie_duration = " + movie.getDuration() +
                     ", movie_price = " + movie.getPrice() + ", movie_actors = '" + movie.getActors() + "', movie_description = '" +
-                    movie.getDescription() + "', movie_cover_path = ?, movie_age_limit = '" +
+                    movie.getDescription() + "', movie_cover_path = '" + movie.getCoverPath() + "', movie_age_limit = '" +
                     movie.getAgeLimit() + "', movie_genre = '" + movie.getGenre() + "', movie_rating = '" +
                     movie.getRating() + "' WHERE movie_name = '" + holdName + "';";
 
-            stmt = conn.prepareStatement(sql);
-            stmt.setString(1, movie.getCoverPath());
-
-            stmt.executeUpdate();
+            stmt.executeUpdate(sql);
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
@@ -81,9 +81,9 @@ public class DBMovies {
     public void remove(Movie movie) {
 
         try {
+            stmt = conn.createStatement();
             String sql = "delete from movies where movie_name=\"" + movie.getName() + "\"";
-            stmt = conn.prepareStatement(sql);
-            stmt.executeUpdate();
+            stmt.executeUpdate(sql);
         } catch (SQLException ex) {
             ex.printStackTrace();
         }

@@ -1,11 +1,14 @@
 package PresentationLayer;
 
 import ApplicationLayer.DataTypes.Movie;
+import ApplicationLayer.DataTypes.Schedule;
 import ApplicationLayer.ManageMovieController;
 import ApplicationLayer.ResultsMovieController;
 import Kino.KinoXP;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -13,6 +16,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 
 import java.time.LocalDate;
 
@@ -21,68 +26,61 @@ import java.time.LocalDate;
  */
 public class ResultsMovieScene {
 
-    public static TableView<Movie> moviesTableView;
+    public static TableView<Schedule> moviesTableView;
     private Scene manageMovieScene;
     private BorderPane root;
-    private Button addButton, removeButton, infoButton, editButton;
-    private TableColumn<Movie, String> nameColumn;
-    private TableColumn<Movie, Integer> durationColumn;
-    private TableColumn<Movie, Double> priceColumn;
-    private TableColumn<Movie, String> genreColumn;
+    private Button manageBookingButton;
+    private TableColumn<Schedule, Integer> scheduleIdColumn;
+    private TableColumn<Schedule, Integer> movieIdColumn;
+    private TableColumn<Schedule, Integer> roomColumn;
+    private TableColumn<Schedule, Integer> totalTicketsColumn;
     ResultsMovieController resultsMovieController = new ResultsMovieController();
 
     public Scene setResultsMovieScene(LocalDate date) {
 
-        addButton = new Button("Adfdsfgdsd");
-        addButton.setPrefSize(100, 30);
-        removeButton = new Button("Remove");
-        removeButton.setPrefSize(100, 30);
-        infoButton = new Button("Info");
-        infoButton.setPrefSize(100, 30);
-        editButton = new Button("Edit");
-        editButton.setPrefSize(100, 30);
+        manageBookingButton = new Button("Manage bookings");
+        manageBookingButton.setPrefSize(200, 30);
 
         moviesTableView = new TableView<>();
         moviesTableView.setPrefHeight(435);
-        // TO DO: Create function in the ctrl to sort the movies just for the date passed as parameter
-        // resultsMovieController.searchMoviesByDate();
-        moviesTableView.itemsProperty().setValue(KinoXP.movieList);
+        moviesTableView.itemsProperty().setValue(resultsMovieController.searchMoviesByDate(date));
 
-        nameColumn = new TableColumn<>("Name");
-        nameColumn.setMinWidth(120);
-        durationColumn = new TableColumn<>("Duration");
-        durationColumn.setMinWidth(120);
-        priceColumn = new TableColumn<>("Price");
-        priceColumn.setMinWidth(120);
-        genreColumn = new TableColumn<>("Genre");
-        genreColumn.setMinWidth(120);
+        scheduleIdColumn = new TableColumn<>("Schedule id");
+        scheduleIdColumn.setMinWidth(120);
+        movieIdColumn = new TableColumn<>("Movie id");
+        movieIdColumn.setMinWidth(120);
+        roomColumn = new TableColumn<>("Room no");
+        roomColumn.setMinWidth(120);
+        totalTicketsColumn = new TableColumn<>("Total tickets");
+        totalTicketsColumn.setMinWidth(120);
 
-        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        durationColumn.setCellValueFactory(new PropertyValueFactory<>("duration"));
-        priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
-        genreColumn.setCellValueFactory(new PropertyValueFactory<>("genre"));
-        moviesTableView.getColumns().addAll(nameColumn, durationColumn, priceColumn, genreColumn);
+        scheduleIdColumn.setCellValueFactory(new PropertyValueFactory<>("schedule_id"));
+        movieIdColumn.setCellValueFactory(new PropertyValueFactory<>("movie_id"));
+        roomColumn.setCellValueFactory(new PropertyValueFactory<>("room"));
+        totalTicketsColumn.setCellValueFactory(new PropertyValueFactory<>("total_tickets"));
+        moviesTableView.getColumns().addAll(scheduleIdColumn, movieIdColumn, roomColumn, totalTicketsColumn);
+
+        Label selectedDateLabel = new Label("Selected date: ");
+        selectedDateLabel.setFont(Font.font(null, FontWeight.BOLD, 16));
+        Label selectedDateValue = new Label(date.toString());
+        selectedDateValue.setFont(Font.font(null, 16));
+
+        HBox selectedDateBox = new HBox();
+        selectedDateBox.setPadding(new Insets(30, 0, 10, 20));
+        selectedDateBox.getChildren().addAll(selectedDateLabel, selectedDateValue);
+
 
         Region buttonReg = new Region();
         buttonReg.setPrefWidth(200);
 
-        HBox buttonHBox = new HBox(20, buttonReg, addButton, removeButton, infoButton, editButton);
+        HBox buttonHBox = new HBox(20, buttonReg, manageBookingButton);
 
-        VBox vBox = new VBox(30, moviesTableView, buttonHBox);
+        VBox vBox = new VBox(30, selectedDateBox, moviesTableView, buttonHBox);
 
         root = new BorderPane();
         root.setCenter(vBox);
 
         manageMovieScene = new Scene(root, 700, 500);
-
-        // make an instantiation of the Controller
-        ManageMovieController manageMovieController = new ManageMovieController();
-
-        // make functionality for the buttons
-        addButton.setOnAction(e -> manageMovieController.addMovie());
-        infoButton.setOnAction(e -> manageMovieController.showInfoScene(moviesTableView.getSelectionModel().getSelectedItem()));
-        removeButton.setOnAction(e -> manageMovieController.removeMovie(moviesTableView.getSelectionModel().getSelectedItem()));
-        editButton.setOnAction(event -> manageMovieController.editMovie(moviesTableView.getSelectionModel().getSelectedItem()));
 
         return manageMovieScene;
     }

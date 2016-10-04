@@ -1,9 +1,7 @@
 package ApplicationLayer;
 
-import ApplicationLayer.DataTypes.Movie;
+import ApplicationLayer.DataTypes.Schedule;
 import Kino.KinoXP;
-import PresentationLayer.ManageMovieScene;
-import PresentationLayer.ResultsMovieScene;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -14,11 +12,14 @@ import java.time.LocalDate;
  */
 public class ResultsMovieController {
     public ObservableList searchMoviesByDate(LocalDate date) {
-        ObservableList<Movie> newList = FXCollections.observableArrayList();
+        ObservableList<Schedule> newList = FXCollections.observableArrayList();
+        newList.clear();
 
-        //for(Movie movie : KinoXP.movieList) {
-        // TO DO loop in the scheduled movie lists and filter by the date.
-        //}
+        for(Schedule schedule : KinoXP.scheduleList) {
+            if(schedule.getSchedule_date().equals(date.toString())) {
+                newList.add(schedule);
+            }
+        }
 
         return newList;
     }

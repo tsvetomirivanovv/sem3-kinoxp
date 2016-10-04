@@ -29,15 +29,13 @@ public class ViewMovieScene {
     private Image image;
     private Label name, duration, price, actors,
             description, genre, rating, ageLimit;
-    private TextField nameTF, durationTF, priceTF, actorsTF,
-            descriptionTF, genreTF, ratingTF, ageLimitTF;
 
     public void setInfoScene(Movie movie) {
 
         window = new Stage();
 
         // setting the labels and stuff
-        image = new Image("file:D:\\School related\\SEM 3\\SWD\\KinoXP -Mand. Ass. 1\\board1.png", 200, 200, false, false);
+        image = new Image("file:" + movie.getCoverPath(), 200, 200, false, false);
         imageView = new ImageView(image);
 
         name = new Label("Name: " + movie.getName());

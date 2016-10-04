@@ -19,8 +19,10 @@ public class HomeSceneController {
 
     public void changeScene(String scene, LocalDate date) {
         if(scene.equals("manage")) {
+            KinoXP.window.setTitle("Manage movies - KinoXP");
             KinoXP.window.setScene(manageMovieScene.setManageMovieScene());
         } else if (scene.equals("results")) {
+            KinoXP.window.setTitle("Scheduled results - KinoXP");
             KinoXP.window.setScene(resultsMovieScene.setResultsMovieScene(date));
         }
     }

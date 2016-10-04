@@ -27,6 +27,10 @@ public class BookingCustomerScene extends Application {
         emailTextField = new TextField();
         emailTextField.setPromptText("Write email here...");
 
+        //un comment
+        ticketTextField = new TextField();
+        ticketTextField.setPromptText("Write tickets number here...");
+
         
 
     }

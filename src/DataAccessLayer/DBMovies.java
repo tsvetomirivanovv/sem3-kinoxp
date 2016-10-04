@@ -26,6 +26,7 @@ public class DBMovies {
 
             while (rs.next()) {
                 Movie movie = new Movie();
+                movie.setMovie_id(rs.getInt("movie_id"));
                 movie.setName(rs.getString("movie_name"));
                 movie.setDuration(rs.getInt("movie_duration"));
                 movie.setPrice(rs.getDouble("movie_price"));

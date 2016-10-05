@@ -39,10 +39,6 @@ public class KinoXP extends Application {
         // fill all ArrayLists with data from the Database
         fillArrayLists();
 
-        System.out.println(movieList);
-        System.out.println(scheduleList);
-        System.out.println(bookingList);
-
         // make an instantiation of the class HomeScene
         HomeScene homeScene = new HomeScene();
         window.setTitle("KinoXP");

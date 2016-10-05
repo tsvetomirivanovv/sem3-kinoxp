@@ -7,6 +7,7 @@ import DataAccessLayer.DBBookings;
 import DataAccessLayer.DBMovies;
 import DataAccessLayer.DBSchedules;
 import DataAccessLayer.Database;
+import PresentationLayer.BookingCustomerScene;
 import PresentationLayer.HomeScene;
 import javafx.application.Application;
 import javafx.collections.ObservableList;
@@ -44,7 +45,6 @@ public class KinoXP extends Application {
 
         // make an instantiation of the class HomeScene
         HomeScene homeScene = new HomeScene();
-
         window.setTitle("KinoXP");
         window.setScene(homeScene.setHomeScene());
         window.show();

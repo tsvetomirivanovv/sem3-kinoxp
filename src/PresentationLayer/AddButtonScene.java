@@ -37,13 +37,13 @@ public class AddButtonScene {
 
         // Initializing the Labels, Buttons and stuff
         borderPane = new BorderPane();
-        borderPane.setPadding(new Insets(10, 10, 10, 10));
+        borderPane.setPadding(new Insets(20, 40, 40, 40));
         vBoxLabel = new VBox(20);
         vBoxLabel.setPadding(new Insets(40, 40, 40, 40)); // LABEL VBOX
         vBoxTextField = new VBox(9);
         vBoxTextField.setPadding(new Insets(40, 40, 40, 40)); // TEXTFIELD VBOX
 
-        hBoxButton = new HBox(9); // BUTTON HBOX
+        hBoxButton = new HBox(10); // BUTTON HBOX
         hBox = new HBox(); // MAIN HBOX
 
         name = new Label("Name: ");
@@ -61,7 +61,7 @@ public class AddButtonScene {
 
         actors = new Label("Actors: ");
         textFieldActors = new TextField();
-        textFieldActors.setPromptText("Wrie actors here ...");
+        textFieldActors.setPromptText("Write actors here ...");
 
         description = new Label("Description: ");
         textFieldDescription = new TextField();
@@ -138,7 +138,8 @@ public class AddButtonScene {
         });
 
         // Setting the scene and the stage
-        scene = new Scene(borderPane, 600, 500);
+        scene = new Scene(borderPane, 620, 500);
+        scene.getStylesheets().add("CSS");
         window.setScene(scene);
         window.show();
     }

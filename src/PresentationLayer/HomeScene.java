@@ -1,6 +1,7 @@
 package PresentationLayer;
 
 import ApplicationLayer.HomeSceneController;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -31,8 +32,8 @@ public class HomeScene {
             date = datePicker.getValue();
         });
 
-        HBox buttonBox = new HBox();
-        VBox homeBox = new VBox();
+        HBox buttonBox = new HBox(20);
+        VBox homeBox = new VBox(20);
 
 
         manageMovieButton = new Button("Manage movies");
@@ -40,9 +41,11 @@ public class HomeScene {
 
         buttonBox.getChildren().add(manageMovieButton);
         buttonBox.getChildren().add(searchButton);
+        buttonBox.setAlignment(Pos.CENTER);
 
         homeBox.getChildren().add(datePicker);
         homeBox.getChildren().add(buttonBox);
+        homeBox.setAlignment(Pos.CENTER);
 
         root = new BorderPane();
         root.setCenter(homeBox);
@@ -57,6 +60,7 @@ public class HomeScene {
             homeSceneController.changeScene("results", date);
         });
 
+        homeScene.getStylesheets().add("CSS");
         return homeScene;
     }
 }

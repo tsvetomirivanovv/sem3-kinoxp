@@ -6,6 +6,7 @@ import ApplicationLayer.ManageMovieController;
 import ApplicationLayer.ResultsMovieController;
 import Kino.KinoXP;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -44,6 +45,7 @@ public class ResultsMovieScene {
         moviesTableView = new TableView<>();
         moviesTableView.setPrefHeight(435);
         moviesTableView.itemsProperty().setValue(resultsMovieController.searchMoviesByDate(date));
+        moviesTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
         scheduleIdColumn = new TableColumn<>("Schedule id");
         scheduleIdColumn.setMinWidth(120);
@@ -65,8 +67,11 @@ public class ResultsMovieScene {
         Label selectedDateValue = new Label(date.toString());
         selectedDateValue.setFont(Font.font(null, 16));
 
+        selectedDateLabel.setId("selectedDateLabel");
+        selectedDateValue.setId("selectedDateLabel");
+
         HBox selectedDateBox = new HBox();
-        selectedDateBox.setPadding(new Insets(30, 0, 10, 20));
+        selectedDateBox.setPadding(new Insets(20, 0, 10, 20));
         selectedDateBox.getChildren().addAll(selectedDateLabel, selectedDateValue);
 
 
@@ -78,9 +83,11 @@ public class ResultsMovieScene {
         VBox vBox = new VBox(30, selectedDateBox, moviesTableView, buttonHBox);
 
         root = new BorderPane();
+        root.setPadding(new Insets(20, 20, 20, 20));
         root.setCenter(vBox);
 
         manageMovieScene = new Scene(root, 700, 500);
+        manageMovieScene.getStylesheets().add("CSS");
 
         return manageMovieScene;
     }

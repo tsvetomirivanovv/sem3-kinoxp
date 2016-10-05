@@ -6,6 +6,8 @@ import Kino.KinoXP;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
@@ -37,17 +39,20 @@ public class ManageMovieScene {
 
         searchField = new TextField();
         searchField.setPromptText("Search...");
+        searchField.setPrefSize(150, 30);
         addButton = new Button("Add");
-        addButton.setPrefSize(100, 30);
+        addButton.setPrefSize(70, 30);
         removeButton = new Button("Remove");
-        removeButton.setPrefSize(100, 30);
+        removeButton.setPrefSize(70, 30);
         infoButton = new Button("Info");
-        infoButton.setPrefSize(100, 30);
+        infoButton.setPrefSize(70, 30);
         editButton = new Button("Edit");
-        editButton.setPrefSize(100, 30);
+        editButton.setPrefSize(70, 30);
 
         moviesTableView = new TableView<>();
         moviesTableView.setPrefHeight(435);
+        moviesTableView.setPadding(new Insets(30, 30, 0, 30));
+        moviesTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         moviesTableView.itemsProperty().setValue(KinoXP.movieList);
 
         nameColumn = new TableColumn<>("Name");
@@ -66,16 +71,19 @@ public class ManageMovieScene {
         moviesTableView.getColumns().addAll(nameColumn, durationColumn, priceColumn, genreColumn);
 
         Region buttonReg = new Region();
-        buttonReg.setPrefWidth(200);
+        buttonReg.setPrefWidth(60);
 
         HBox buttonHBox = new HBox(20, searchField, buttonReg, addButton, removeButton, infoButton, editButton);
+        buttonHBox.setAlignment(Pos.CENTER);
 
         VBox vBox = new VBox(30, moviesTableView, buttonHBox);
+        vBox.setAlignment(Pos.TOP_CENTER);
 
         root = new BorderPane();
         root.setCenter(vBox);
 
-        manageMovieScene = new Scene(root, 700, 500);
+        manageMovieScene = new Scene(root, 670, 530);
+        manageMovieScene.getStylesheets().add("CSS");
 
         // make an instantiation of the Controller
         ManageMovieController manageMovieController = new ManageMovieController();

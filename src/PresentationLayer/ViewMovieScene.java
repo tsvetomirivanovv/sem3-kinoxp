@@ -63,6 +63,7 @@ public class ViewMovieScene {
 
         // setting the scene and stage
         scene = new Scene(root, 500, 400);
+        scene.getStylesheets().add("CSS");
         window.setScene(scene);
         window.show();
     }

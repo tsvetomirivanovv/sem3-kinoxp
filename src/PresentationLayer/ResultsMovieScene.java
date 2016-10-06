@@ -62,7 +62,7 @@ public class ResultsMovieScene {
         scheduleIdColumn.setCellValueFactory(new PropertyValueFactory<>("schedule_id"));
         movieNameColumn.setCellValueFactory(new PropertyValueFactory<>("movie_name"));
         roomColumn.setCellValueFactory(new PropertyValueFactory<>("room"));
-        timeColumn.setCellValueFactory(new PropertyValueFactory<>("time"));
+        timeColumn.setCellValueFactory(new PropertyValueFactory<>("schedule_time"));
         totalTicketsColumn.setCellValueFactory(new PropertyValueFactory<>("total_tickets"));
         moviesTableView.getColumns().addAll(scheduleIdColumn, movieNameColumn, roomColumn, timeColumn, totalTicketsColumn);
 

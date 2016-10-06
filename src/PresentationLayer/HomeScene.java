@@ -21,6 +21,7 @@ public class HomeScene {
     private BorderPane root;
     private Button manageMovieButton;
     private Button searchButton;
+    private Button manageConsumables;
     private LocalDate date;
 
     public Scene setHomeScene() {
@@ -33,17 +34,23 @@ public class HomeScene {
         });
 
         HBox buttonBox = new HBox(20);
+        HBox upperHBox = new HBox(20);
         VBox homeBox = new VBox(20);
 
 
         manageMovieButton = new Button("Manage movies");
         searchButton = new Button("Search");
+        manageConsumables = new Button("Manage Consumables");
 
         buttonBox.getChildren().add(manageMovieButton);
-        buttonBox.getChildren().add(searchButton);
+        buttonBox.getChildren().add(manageConsumables);
         buttonBox.setAlignment(Pos.CENTER);
 
-        homeBox.getChildren().add(datePicker);
+        upperHBox.getChildren().add(datePicker);
+        upperHBox.getChildren().add(searchButton);
+        upperHBox.setAlignment(Pos.CENTER);
+
+        homeBox.getChildren().add(upperHBox);
         homeBox.getChildren().add(buttonBox);
         homeBox.setAlignment(Pos.CENTER);
 
@@ -56,6 +63,7 @@ public class HomeScene {
         HomeSceneController homeSceneController = new HomeSceneController();
 
         manageMovieButton.setOnAction(e -> homeSceneController.changeScene("manage", null));
+        manageConsumables.setOnAction(e -> homeSceneController.changeScene("manageConsumables", null));
         searchButton.setOnAction(e -> {
             homeSceneController.changeScene("results", date);
         });

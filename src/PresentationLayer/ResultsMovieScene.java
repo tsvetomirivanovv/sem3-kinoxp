@@ -117,4 +117,8 @@ public class ResultsMovieScene {
         return manageMovieScene;
     }
 
+    public TableView getTable(){
+        return moviesTableView;
+    }
+
 }

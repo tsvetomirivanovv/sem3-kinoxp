@@ -2,6 +2,7 @@ package PresentationLayer;
 
 import ApplicationLayer.BookingCustomerController;
 import ApplicationLayer.DataTypes.Booking;
+import ApplicationLayer.DataTypes.Schedule;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -25,9 +26,12 @@ public class BookingCustomerScene {
     private HBox bigH, buttonH;
     private Button bookButton;
     private Booking booking;
+    ResultsMovieScene resultsMovieScene ;
 
     public void setBookingScene(Booking book, String addOrEdit) {
         window = new Stage();
+
+        resultsMovieScene = new ResultsMovieScene();
 
         //initializing the labels, text fields, the button etc.
         namelabel = new Label("Name of the client");
@@ -79,7 +83,8 @@ public class BookingCustomerScene {
 
         //set an action for the book button
         bookButton.setOnAction(e -> {
-            booking.setSchedule_id(1);
+            Schedule schedule = (Schedule) resultsMovieScene.getTable().getSelectionModel().getSelectedItem();
+            booking.setSchedule_id(schedule.getSchedule_id());
             booking.setFull_name(nameTextField.getText());
             booking.setEmail(emailTextField.getText());
             booking.setPhone(phoneTextField.getText());

@@ -12,7 +12,7 @@ import java.time.LocalDate;
  * Created by Andrei on 28/09/2016.
  */
 public class ResultsMovieController {
-    public ObservableList searchMoviesByDate(LocalDate date) {
+    public ObservableList<Schedule> searchMoviesByDate(LocalDate date) {
         ObservableList<Schedule> newList = FXCollections.observableArrayList();
         newList.clear();
 

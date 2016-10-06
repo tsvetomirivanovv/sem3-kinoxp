@@ -23,7 +23,7 @@ public class BookingCustomerScene {
     private BorderPane borderPane;
     private Scene scene;
     private VBox vlabels, vtextfields;
-    private Label namelabel, phoneNo, email, ticket;
+    private Label namelabel, phoneNo, email, ticket, totalPrice;
     private TextField nameTextField, phoneTextField, emailTextField, ticketTextField;
     private HBox bigH, buttonH;
     private Button bookButton, addConsumable;
@@ -41,6 +41,7 @@ public class BookingCustomerScene {
         phoneNo = new Label("Phone number");
         email = new Label("Email");
         ticket = new Label("Ticket");
+        totalPrice = new Label("Total Price: ");
 
         nameTextField = new TextField();
         nameTextField.setPromptText("Write name here...");
@@ -70,7 +71,7 @@ public class BookingCustomerScene {
         vlabels.setAlignment(Pos.CENTER);
 
         vtextfields = new VBox(7);
-        vtextfields.getChildren().addAll(nameTextField, phoneTextField, emailTextField, ticketTextField);
+        vtextfields.getChildren().addAll(nameTextField, phoneTextField, emailTextField, ticketTextField,totalPrice);
         vtextfields.setAlignment(Pos.CENTER);
 
         bigH = new HBox(10);

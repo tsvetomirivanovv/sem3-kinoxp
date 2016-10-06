@@ -1,13 +1,8 @@
 package PresentationLayer;
 
-import ApplicationLayer.BookingCustomerController;
 import ApplicationLayer.DataTypes.Booking;
 import ApplicationLayer.DataTypes.Consumable;
-import ApplicationLayer.DataTypes.Consumable_by_Booking;
-import ApplicationLayer.DataTypes.Schedule;
-import ApplicationLayer.ResultsMovieController;
 import Kino.KinoXP;
-import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -15,17 +10,12 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
+
 import javafx.stage.Stage;
 
-import java.time.LocalDate;
 
-/**
- * Created by Andrei on 10/6/2016.
- */
+
+
 public class ViewConsumables {
 
     private Stage stage;
@@ -52,9 +42,9 @@ public class ViewConsumables {
         priceColumn = new TableColumn<>("Consumable price");
         priceColumn.setMinWidth(120);
 
-        idColumn.setCellValueFactory(new PropertyValueFactory<>("consumable_id"));
-        nameColumn.setCellValueFactory(new PropertyValueFactory<>("consumable_name"));
-        priceColumn.setCellValueFactory(new PropertyValueFactory<>("consumable_price"));
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
         consumable_by_bookingTableView.getColumns().addAll(idColumn, nameColumn, priceColumn);
 
         consumable_by_bookingTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);

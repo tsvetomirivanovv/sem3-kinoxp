@@ -36,8 +36,9 @@ public class DBSchedules {
                 int movieID = rs.getInt("movie_id");
                 schedule.setMovie_id(movieID);
                 schedule.setMovie_name(getMovieNameById(movieID));
-                schedule.setSchedule_date(rs.getString("schedule_date").substring(0, 11));
-                schedule.setSchedule_time(rs.getString("schedule_date").substring(11));
+                String dateTime = rs.getString("schedule_date");
+                schedule.setSchedule_date(dateTime.substring(0, 10));
+                schedule.setSchedule_time(dateTime.substring(11));
                 schedule.setRoom(rs.getInt("room"));
                 schedule.setTotal_tickets(rs.getInt("total_tickets"));
 
@@ -51,7 +52,7 @@ public class DBSchedules {
 
     public String getMovieNameById(int movieId) {
         for (Movie movie : KinoXP.movieList) {
-            if (movie.getMovie_id() == movieId){
+            if (movie.getMovie_id() == movieId) {
                 return movie.getName();
             }
         }

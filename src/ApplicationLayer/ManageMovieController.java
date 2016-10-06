@@ -13,54 +13,67 @@ import PresentationLayer.ViewMovieScene;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
 import java.util.Iterator;
+import java.util.Optional;
 
 /**
  * Created by Tsvetomir on 9/28/2016.
  */
 public class ManageMovieController {
 
-    public void backToHomeScene(){
+    public void backToHomeScene() {
         // go back to the HomeScene
         HomeScene homeScene = new HomeScene();
         KinoXP.window.setScene(homeScene.setHomeScene());
     }
 
     public void removeMovie(Movie movie) {
-        try {// remove the movie from the global ObservableList and then from DB
-            Iterator<Schedule> scheduleIterator = KinoXP.scheduleList.iterator();
+        Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmAlert.setHeaderText("Remove movie");
+        confirmAlert.setContentText("Are you sure you want to remove \"" + movie.getName() + "\"?");
 
-            DBSchedules dbSchedule = new DBSchedules();
-            DBBookings dbBooking = new DBBookings();
-            DBMovies dbMovies = new DBMovies();
+        Optional<ButtonType> result = confirmAlert.showAndWait();
 
-            while(scheduleIterator.hasNext()){
-                Iterator<Booking> bookingIterator = KinoXP.bookingList.iterator();
-                Schedule schedule = scheduleIterator.next();
-                //find the schedule that has the same movie id as the movie that needs to be removed
-                if (schedule.getMovie_id() == movie.getMovie_id()){
+        if (result.get() == ButtonType.OK) { //confirmed
+            try {// remove the movie from the global ObservableList and then from DB
+                Iterator<Schedule> scheduleIterator = KinoXP.scheduleList.iterator();
 
-                    //find the booking that has the same schedule id as that schedule
-                    while (bookingIterator.hasNext()){
-                        Booking booking = bookingIterator.next();
-                        if(booking.getSchedule_id() == schedule.getSchedule_id()) {
-                            bookingIterator.remove();  //remove all bookings that have that schedule id
-                            dbBooking.remove(booking);
+                DBSchedules dbSchedule = new DBSchedules();
+                DBBookings dbBooking = new DBBookings();
+                DBMovies dbMovies = new DBMovies();
+
+                while (scheduleIterator.hasNext()) {
+                    Iterator<Booking> bookingIterator = KinoXP.bookingList.iterator();
+                    Schedule schedule = scheduleIterator.next();
+                    //find the schedule that has the same movie id as the movie that needs to be removed
+                    if (schedule.getMovie_id() == movie.getMovie_id()) {
+
+                        //find the booking that has the same schedule id as that schedule
+                        while (bookingIterator.hasNext()) {
+                            Booking booking = bookingIterator.next();
+                            if (booking.getSchedule_id() == schedule.getSchedule_id()) {
+                                bookingIterator.remove();  //remove all bookings that have that schedule id
+                                dbBooking.remove(booking);
+                            }
                         }
+                        scheduleIterator.remove(); //remove all schedules that have that movie id
+                        dbSchedule.remove(schedule);
                     }
-                    scheduleIterator.remove(); //remove all schedules that have that movie id
-                    dbSchedule.remove(schedule);
                 }
+
+                KinoXP.movieList.remove(movie); //finally remove the selected movie
+                dbMovies.remove(movie);
+
+            } catch (NullPointerException nullPointer) {
+                showAlert();
             }
 
-            KinoXP.movieList.remove(movie); //finally remove the selected movie
-            dbMovies.remove(movie);
-        }
-        catch (NullPointerException nullPointer) {
-            showAlert();
+        } else {
+            confirmAlert.close();
         }
     }
 
@@ -75,8 +88,7 @@ public class ManageMovieController {
         try {//shows the AddButtonScene with populated fields
             AddButtonScene addButtonScene = new AddButtonScene();
             addButtonScene.setAddScene(mov, "edit");
-        }
-        catch (NullPointerException nullPointer) {
+        } catch (NullPointerException nullPointer) {
             showAlert();
         }
     }
@@ -85,8 +97,7 @@ public class ManageMovieController {
         try {
             ViewMovieScene viewMovieScene = new ViewMovieScene();
             viewMovieScene.setInfoScene(movie);
-        }
-        catch (NullPointerException nullPointer) {
+        } catch (NullPointerException nullPointer) {
             showAlert();
         }
     }
@@ -99,7 +110,7 @@ public class ManageMovieController {
         alert.showAndWait();
     }
 
-    public void searchMovie(TableView moviesTableView, TextField searchField){
+    public void searchMovie(TableView moviesTableView, TextField searchField) {
         FilteredList<Movie> filteredData = new FilteredList<>(moviesTableView.getItems(), p -> true);
 
         searchField.textProperty().addListener((observable, oldValue, newValue) -> {

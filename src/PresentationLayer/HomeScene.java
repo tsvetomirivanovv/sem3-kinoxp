@@ -63,4 +63,12 @@ public class HomeScene {
         homeScene.getStylesheets().add("CSS");
         return homeScene;
     }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
 }

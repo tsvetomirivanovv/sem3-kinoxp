@@ -10,6 +10,7 @@ import DataAccessLayer.Database;
 import PresentationLayer.BookingCustomerScene;
 import PresentationLayer.HomeScene;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.stage.Stage;
 
@@ -23,7 +24,7 @@ public class KinoXP extends Application {
     // global list for storing data from Database
     public static ObservableList<Movie> movieList;
     public static ObservableList<Schedule> scheduleList;
-    public static ObservableList<Booking> bookingList;
+    public static ObservableList<Booking> bookingList = FXCollections.observableArrayList();
 
     public static void main(String[] args) {
         launch(args);

@@ -4,6 +4,7 @@ import ApplicationLayer.DataTypes.Movie;
 import Kino.KinoXP;
 import PresentationLayer.ManageMovieScene;
 import PresentationLayer.ResultsMovieScene;
+import PresentationLayer.ViewBookingScene;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
@@ -36,5 +37,6 @@ public class HomeSceneController {
                 alert.showAndWait();
             }
         }
+
     }
 }

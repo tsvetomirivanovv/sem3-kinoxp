@@ -2,6 +2,8 @@ package PresentationLayer;
 
 import ApplicationLayer.DataTypes.Schedule;
 import ApplicationLayer.ResultsMovieController;
+import ApplicationLayer.ViewBookingController;
+import Kino.KinoXP;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -16,6 +18,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
+import javax.swing.text.View;
 import java.time.LocalDate;
 
 /**
@@ -92,7 +95,17 @@ public class ResultsMovieScene {
         manageMovieScene.getStylesheets().add("CSS");
 
         backButton.setOnAction(e -> resultsMovieController.backToHomeScene());
+        manageBookingButton.setOnAction(event -> {
+            ViewBookingScene viewBookingScene = new ViewBookingScene();
+            try {
+                KinoXP.window.setScene(viewBookingScene.setViewBookingScene(moviesTableView.getSelectionModel().getSelectedItem(),date));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+
 
         return manageMovieScene;
     }
+
 }

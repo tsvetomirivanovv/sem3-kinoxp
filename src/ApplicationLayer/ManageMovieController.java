@@ -32,16 +32,17 @@ public class ManageMovieController {
     public void removeMovie(Movie movie) {
         try {// remove the movie from the global ObservableList and then from DB
             Iterator<Schedule> scheduleIterator = KinoXP.scheduleList.iterator();
-            Iterator<Booking> bookingIterator = KinoXP.bookingList.iterator();
 
             DBSchedules dbSchedule = new DBSchedules();
             DBBookings dbBooking = new DBBookings();
             DBMovies dbMovies = new DBMovies();
 
             while(scheduleIterator.hasNext()){
+                Iterator<Booking> bookingIterator = KinoXP.bookingList.iterator();
                 Schedule schedule = scheduleIterator.next();
                 //find the schedule that has the same movie id as the movie that needs to be removed
                 if (schedule.getMovie_id() == movie.getMovie_id()){
+
                     //find the booking that has the same schedule id as that schedule
                     while (bookingIterator.hasNext()){
                         Booking booking = bookingIterator.next();

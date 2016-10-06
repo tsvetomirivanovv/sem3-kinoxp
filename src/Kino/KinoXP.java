@@ -1,12 +1,10 @@
 package Kino;
 
 import ApplicationLayer.DataTypes.Booking;
+import ApplicationLayer.DataTypes.Consumable;
 import ApplicationLayer.DataTypes.Movie;
 import ApplicationLayer.DataTypes.Schedule;
-import DataAccessLayer.DBBookings;
-import DataAccessLayer.DBMovies;
-import DataAccessLayer.DBSchedules;
-import DataAccessLayer.Database;
+import DataAccessLayer.*;
 import PresentationLayer.HomeScene;
 import javafx.application.Application;
 import javafx.collections.ObservableList;
@@ -23,6 +21,7 @@ public class KinoXP extends Application {
     public static ObservableList<Movie> movieList;
     public static ObservableList<Schedule> scheduleList;
     public static ObservableList<Booking> bookingList;
+    public static ObservableList<Consumable> consumableList;
 
     public static void main(String[] args) {
         launch(args);
@@ -51,10 +50,12 @@ public class KinoXP extends Application {
         DBMovies dbMovies = new DBMovies();
         DBSchedules dbSchedules = new DBSchedules();
         DBBookings dbBookings = new DBBookings();
+        DBConsumables dbConsumables = new DBConsumables();
 
         movieList = dbMovies.readAll();
         scheduleList = dbSchedules.readAll();
         bookingList = dbBookings.readAll();
+        consumableList = dbConsumables.readAll();
 
     }
 

@@ -71,7 +71,7 @@ public class ManageMovieScene {
         Region buttonReg = new Region();
         buttonReg.setPrefWidth(30);
 
-        HBox buttonHBox = new HBox(20, searchField, buttonReg,backButton, addButton, removeButton, infoButton, editButton);
+        HBox buttonHBox = new HBox(20, searchField, buttonReg, addButton, editButton, infoButton, removeButton, backButton);
         buttonHBox.setAlignment(Pos.CENTER);
 
         VBox vBox = new VBox(30, moviesTableView, buttonHBox);

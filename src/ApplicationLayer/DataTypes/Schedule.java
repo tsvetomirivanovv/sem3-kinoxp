@@ -12,28 +12,50 @@ public class Schedule {
 
     private IntegerProperty schedule_id;
     private IntegerProperty movie_id;
+    private StringProperty movie_name;
     private StringProperty schedule_date;  // format of the date: 'YYYY-MM-DD-HH'
+    private StringProperty schedule_time;
     private IntegerProperty room;
     private IntegerProperty total_tickets;
 
     public Schedule(){
         this.schedule_id = new SimpleIntegerProperty();
         this.movie_id = new SimpleIntegerProperty();
+        this.movie_name = new SimpleStringProperty();
         this.schedule_date = new SimpleStringProperty();
+        this.schedule_time = new SimpleStringProperty();
         this.room = new SimpleIntegerProperty();
         this.total_tickets = new SimpleIntegerProperty();
     }
 
     public Schedule(int schedule_id, int movie_id, String schedule_date,
-                    int room, int total_tickets){
+                    String schedule_time, int room, int total_tickets){
         this.schedule_id = new SimpleIntegerProperty(schedule_id);
         this.movie_id = new SimpleIntegerProperty(movie_id);
+        this.movie_name = new SimpleStringProperty();
         this.schedule_date = new SimpleStringProperty(schedule_date);
+        this.schedule_time = new SimpleStringProperty(schedule_time);
         this.room = new SimpleIntegerProperty(room);
         this.total_tickets = new SimpleIntegerProperty(total_tickets);
     }
 
     // GETTERS
+
+    public String getMovie_name() {
+        return movie_name.get();
+    }
+
+    public StringProperty movie_nameProperty() {
+        return movie_name;
+    }
+
+    public String getSchedule_time() {
+        return schedule_time.get();
+    }
+
+    public StringProperty schedule_timeProperty() {
+        return schedule_time;
+    }
 
     public int getSchedule_id() {
         return schedule_id.get();
@@ -75,8 +97,16 @@ public class Schedule {
         return total_tickets;
     }
 
-
     // SETTERS
+
+    public void setSchedule_time(String schedule_time) {
+        this.schedule_time.set(schedule_time);
+    }
+
+
+    public void setMovie_name(String movie_name) {
+        this.movie_name.set(movie_name);
+    }
 
     public void setSchedule_id(int schedule_id) {
         this.schedule_id.set(schedule_id);

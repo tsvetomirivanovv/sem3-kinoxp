@@ -1,6 +1,8 @@
 package DataAccessLayer;
 
+import ApplicationLayer.DataTypes.Movie;
 import ApplicationLayer.DataTypes.Schedule;
+import Kino.KinoXP;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -31,8 +33,12 @@ public class DBSchedules {
             while (rs.next()) {
                 Schedule schedule = new Schedule();
                 schedule.setSchedule_id(rs.getInt("schedule_id"));
-                schedule.setMovie_id(rs.getInt("movie_id"));
-                schedule.setSchedule_date(rs.getString("schedule_date"));
+                int movieID = rs.getInt("movie_id");
+                schedule.setMovie_id(movieID);
+                schedule.setMovie_name(getMovieNameById(movieID));
+                String dateTime = rs.getString("schedule_date");
+                schedule.setSchedule_date(dateTime.substring(0, 10));
+                schedule.setSchedule_time(dateTime.substring(11));
                 schedule.setRoom(rs.getInt("room"));
                 schedule.setTotal_tickets(rs.getInt("total_tickets"));
 
@@ -42,6 +48,15 @@ public class DBSchedules {
             e.printStackTrace();
         }
         return schedules;
+    }
+
+    public String getMovieNameById(int movieId) {
+        for (Movie movie : KinoXP.movieList) {
+            if (movie.getMovie_id() == movieId) {
+                return movie.getName();
+            }
+        }
+        return "";
     }
 
     public void insert(Schedule schedule) {

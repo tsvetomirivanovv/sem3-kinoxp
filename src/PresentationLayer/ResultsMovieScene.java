@@ -4,7 +4,6 @@ import ApplicationLayer.BookingCustomerController;
 import ApplicationLayer.DataTypes.Booking;
 import ApplicationLayer.DataTypes.Schedule;
 import ApplicationLayer.ResultsMovieController;
-import ApplicationLayer.ViewBookingController;
 import Kino.KinoXP;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -20,7 +19,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
-import javax.swing.text.View;
 import java.time.LocalDate;
 
 /**

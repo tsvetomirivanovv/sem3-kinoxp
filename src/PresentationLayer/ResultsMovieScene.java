@@ -32,8 +32,9 @@ public class ResultsMovieScene {
     private BorderPane root;
     private Button manageBookingButton;
     private TableColumn<Schedule, Integer> scheduleIdColumn;
-    private TableColumn<Schedule, Integer> movieIdColumn;
+    private TableColumn<Schedule, String> movieNameColumn;
     private TableColumn<Schedule, Integer> roomColumn;
+    private TableColumn<Schedule, String> timeColumn;
     private TableColumn<Schedule, Integer> totalTicketsColumn;
     ResultsMovieController resultsMovieController = new ResultsMovieController();
 
@@ -49,18 +50,21 @@ public class ResultsMovieScene {
 
         scheduleIdColumn = new TableColumn<>("Schedule id");
         scheduleIdColumn.setMinWidth(120);
-        movieIdColumn = new TableColumn<>("Movie id");
-        movieIdColumn.setMinWidth(120);
+        movieNameColumn= new TableColumn<>("Movie name");
+        movieNameColumn.setMinWidth(120);
         roomColumn = new TableColumn<>("Room no");
         roomColumn.setMinWidth(120);
+        timeColumn = new TableColumn<>("Time");
+        timeColumn.setMinWidth(120);
         totalTicketsColumn = new TableColumn<>("Total tickets");
         totalTicketsColumn.setMinWidth(120);
 
         scheduleIdColumn.setCellValueFactory(new PropertyValueFactory<>("schedule_id"));
-        movieIdColumn.setCellValueFactory(new PropertyValueFactory<>("movie_id"));
+        movieNameColumn.setCellValueFactory(new PropertyValueFactory<>("movie_name"));
         roomColumn.setCellValueFactory(new PropertyValueFactory<>("room"));
+        timeColumn.setCellValueFactory(new PropertyValueFactory<>("time"));
         totalTicketsColumn.setCellValueFactory(new PropertyValueFactory<>("total_tickets"));
-        moviesTableView.getColumns().addAll(scheduleIdColumn, movieIdColumn, roomColumn, totalTicketsColumn);
+        moviesTableView.getColumns().addAll(scheduleIdColumn, movieNameColumn, roomColumn, timeColumn, totalTicketsColumn);
 
         Label selectedDateLabel = new Label("Selected date: ");
         selectedDateLabel.setFont(Font.font(null, FontWeight.BOLD, 16));

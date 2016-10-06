@@ -8,7 +8,10 @@ import javafx.beans.property.SimpleIntegerProperty;
  */
 public class Consumable_by_Booking {
     //fields
-    private IntegerProperty id, booking_id, consumable_id, quantity;
+    private IntegerProperty id;
+    private IntegerProperty booking_id;
+    private IntegerProperty consumable_id;
+    private IntegerProperty quantity;
 
     //constructor
     public Consumable_by_Booking() {
@@ -27,6 +30,8 @@ public class Consumable_by_Booking {
 
 
     //getters, setters
+
+
     public int getId() {
         return id.get();
     }
@@ -74,7 +79,6 @@ public class Consumable_by_Booking {
     public void setQuantity(int quantity) {
         this.quantity.set(quantity);
     }
-
 
     //toString
     @Override

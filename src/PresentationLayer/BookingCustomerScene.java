@@ -104,7 +104,8 @@ public class BookingCustomerScene {
 
         });
 
-        scene = new Scene(borderPane, 400, 200);
+        scene = new Scene(borderPane, 600, 200);
+        scene.getStylesheets().add("CSS");
         window.setScene(scene);
         window.show();
 

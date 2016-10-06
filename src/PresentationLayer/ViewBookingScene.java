@@ -34,7 +34,7 @@ import static Kino.KinoXP.window;
  * Created by Admin on 10/6/16.
  */
 public class ViewBookingScene {
-        public static ObservableList<Booking> bookingList = FXCollections.observableArrayList();
+        public  ObservableList<Booking> bookingList = FXCollections.observableArrayList();
         public static TableView<Booking> bookingsTableView;
         private static Scene viewBookingScene;
         private BorderPane root;
@@ -96,7 +96,7 @@ public class ViewBookingScene {
             });
             removeButton.setOnAction(event -> {
                 DBBookings dbBookings = new DBBookings();
-                dbBookings.remove(bookingsTableView.getSelectionModel().getSelectedItem());
+                ViewBookingController.removeBooking(bookingsTableView.getSelectionModel().getSelectedItem());
                 bookingList.remove(bookingsTableView.getSelectionModel().getSelectedItem());
             });
             editButton.setOnAction(event -> {
@@ -104,10 +104,7 @@ public class ViewBookingScene {
                 bookingCustomerScene.setBookingScene(bookingsTableView.getSelectionModel().getSelectedItem(),"edit");
 
             });
-
-
-
-
+            viewBookingScene.getStylesheets().add("CSS");
             return viewBookingScene;
         }
 

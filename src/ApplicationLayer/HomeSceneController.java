@@ -2,6 +2,7 @@ package ApplicationLayer;
 
 import ApplicationLayer.DataTypes.Movie;
 import Kino.KinoXP;
+import PresentationLayer.ManageConsumablesScene;
 import PresentationLayer.ManageMovieScene;
 import PresentationLayer.ResultsMovieScene;
 import PresentationLayer.ViewBookingScene;
@@ -17,12 +18,17 @@ import java.time.LocalDate;
 public class HomeSceneController {
 
     private ManageMovieScene manageMovieScene = new ManageMovieScene();
+    private ManageConsumablesScene manageConsumablesScene = new ManageConsumablesScene();
     private ResultsMovieScene resultsMovieScene = new ResultsMovieScene();
 
     public void changeScene(String scene, LocalDate date) {
         if(scene.equals("manage")) {
             KinoXP.window.setTitle("Manage movies - KinoXP");
             KinoXP.window.setScene(manageMovieScene.setManageMovieScene());
+
+        } else if (scene.equals("manageConsumables")) {
+            KinoXP.window.setTitle("Manage consumables - KinoXP");
+            KinoXP.window.setScene(manageConsumablesScene.setManageConsumablesScene());
 
         } else if (scene.equals("results")) {
             try {

@@ -10,7 +10,6 @@ import Kino.KinoXP;
 public class BookingCustomerController {
     public void addBooking(Booking booking) {
         // add the new movie to the global ObservableList and DB
-        KinoXP.bookingList.add(booking);
         DBBookings dbBookings = new DBBookings();
         dbBookings.insert(booking);
     }

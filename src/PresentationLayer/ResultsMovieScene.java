@@ -1,12 +1,8 @@
 package PresentationLayer;
 
-import ApplicationLayer.DataTypes.Movie;
 import ApplicationLayer.DataTypes.Schedule;
-import ApplicationLayer.ManageMovieController;
 import ApplicationLayer.ResultsMovieController;
-import Kino.KinoXP;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -30,7 +26,7 @@ public class ResultsMovieScene {
     public static TableView<Schedule> moviesTableView;
     private Scene manageMovieScene;
     private BorderPane root;
-    private Button manageBookingButton;
+    private Button manageBookingButton, backButton;
     private TableColumn<Schedule, Integer> scheduleIdColumn;
     private TableColumn<Schedule, Integer> movieIdColumn;
     private TableColumn<Schedule, Integer> roomColumn;
@@ -41,6 +37,8 @@ public class ResultsMovieScene {
 
         manageBookingButton = new Button("Manage bookings");
         manageBookingButton.setPrefSize(200, 30);
+        backButton = new Button("Back");
+        backButton.setPrefSize(70, 30);
 
         moviesTableView = new TableView<>();
         moviesTableView.setPrefHeight(435);
@@ -76,9 +74,9 @@ public class ResultsMovieScene {
 
 
         Region buttonReg = new Region();
-        buttonReg.setPrefWidth(200);
+        buttonReg.setPrefWidth(50);
 
-        HBox buttonHBox = new HBox(20, buttonReg, manageBookingButton);
+        HBox buttonHBox = new HBox(20,backButton, manageBookingButton);
 
         VBox vBox = new VBox(30, selectedDateBox, moviesTableView, buttonHBox);
 
@@ -88,6 +86,8 @@ public class ResultsMovieScene {
 
         manageMovieScene = new Scene(root, 700, 500);
         manageMovieScene.getStylesheets().add("CSS");
+
+        backButton.setOnAction(e -> resultsMovieController.backToHomeScene());
 
         return manageMovieScene;
     }

@@ -3,9 +3,6 @@ package PresentationLayer;
 import ApplicationLayer.DataTypes.Movie;
 import ApplicationLayer.ManageMovieController;
 import Kino.KinoXP;
-import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -14,7 +11,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -29,7 +25,7 @@ public class ManageMovieScene {
     private Scene manageMovieScene;
     private BorderPane root;
     private TextField searchField;
-    private Button addButton, removeButton, infoButton, editButton;
+    private Button addButton, removeButton, infoButton, editButton, backButton;
     private TableColumn<Movie, String> nameColumn;
     private TableColumn<Movie, Integer> durationColumn;
     private TableColumn<Movie, Double> priceColumn;
@@ -48,6 +44,8 @@ public class ManageMovieScene {
         infoButton.setPrefSize(70, 30);
         editButton = new Button("Edit");
         editButton.setPrefSize(70, 30);
+        backButton = new Button("Back");
+        backButton.setPrefSize(70, 30);
 
         moviesTableView = new TableView<>();
         moviesTableView.setPrefHeight(435);
@@ -71,9 +69,9 @@ public class ManageMovieScene {
         moviesTableView.getColumns().addAll(nameColumn, durationColumn, priceColumn, genreColumn);
 
         Region buttonReg = new Region();
-        buttonReg.setPrefWidth(60);
+        buttonReg.setPrefWidth(30);
 
-        HBox buttonHBox = new HBox(20, searchField, buttonReg, addButton, removeButton, infoButton, editButton);
+        HBox buttonHBox = new HBox(20, searchField, buttonReg,backButton, addButton, removeButton, infoButton, editButton);
         buttonHBox.setAlignment(Pos.CENTER);
 
         VBox vBox = new VBox(30, moviesTableView, buttonHBox);
@@ -93,6 +91,7 @@ public class ManageMovieScene {
         infoButton.setOnAction(e -> manageMovieController.showInfoScene(moviesTableView.getSelectionModel().getSelectedItem()));
         removeButton.setOnAction(e -> manageMovieController.removeMovie(moviesTableView.getSelectionModel().getSelectedItem()));
         editButton.setOnAction(event -> manageMovieController.editMovie(moviesTableView.getSelectionModel().getSelectedItem()));
+        backButton.setOnAction(e -> manageMovieController.backToHomeScene());
 
         // functionality for the search
         searchField.setOnKeyPressed(event -> {

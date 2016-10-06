@@ -2,6 +2,7 @@ package ApplicationLayer;
 
 import ApplicationLayer.DataTypes.Schedule;
 import Kino.KinoXP;
+import PresentationLayer.HomeScene;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -22,5 +23,11 @@ public class ResultsMovieController {
         }
 
         return newList;
+    }
+
+    public static void backToHomeScene(){
+        // go back to the HomeScene
+        HomeScene homeScene = new HomeScene();
+        KinoXP.window.setScene(homeScene.setHomeScene());
     }
 }

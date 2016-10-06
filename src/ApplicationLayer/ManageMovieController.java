@@ -4,6 +4,7 @@ import ApplicationLayer.DataTypes.Movie;
 import DataAccessLayer.DBMovies;
 import Kino.KinoXP;
 import PresentationLayer.AddButtonScene;
+import PresentationLayer.HomeScene;
 import PresentationLayer.ViewMovieScene;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
@@ -14,6 +15,12 @@ import javafx.scene.control.TextField;
  * Created by Tsvetomir on 9/28/2016.
  */
 public class ManageMovieController {
+
+    public static void backToHomeScene(){
+        // go back to the HomeScene
+        HomeScene homeScene = new HomeScene();
+        KinoXP.window.setScene(homeScene.setHomeScene());
+    }
 
     public static void removeMovie(Movie movie) {
         // remove the movie from the global ObservableList and then from DB

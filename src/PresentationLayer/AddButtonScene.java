@@ -82,8 +82,10 @@ public class AddButtonScene {
 
         cover = new Label("Cover: ");
         coverPath = new Label();
+        coverPath.setPrefWidth(300);
         chooseFileButton = new Button("Choose cover image");
         coverChooser = new FileChooser();
+
 
         confirmButton = new Button("OK");
 

@@ -16,6 +16,8 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import javax.swing.text.View;
+
 public class BookingCustomerScene {
     private Stage window;
     private BorderPane borderPane;
@@ -24,9 +26,10 @@ public class BookingCustomerScene {
     private Label namelabel, phoneNo, email, ticket;
     private TextField nameTextField, phoneTextField, emailTextField, ticketTextField;
     private HBox bigH, buttonH;
-    private Button bookButton;
+    private Button bookButton, addConsumable;
     private Booking booking;
     ResultsMovieScene resultsMovieScene ;
+    ViewConsumables viewConsumables;
 
     public void setBookingScene(Booking book, String addOrEdit) {
         window = new Stage();
@@ -55,9 +58,11 @@ public class BookingCustomerScene {
         ticketTextField.setPromptText("Write number of tickets here...");
         ticketTextField.setPrefWidth(250);
 
+        addConsumable = new Button("Add consumables");
+
         bookButton = new Button("Book movie");
         buttonH = new HBox(5);
-        buttonH.getChildren().add(bookButton);
+        buttonH.getChildren().addAll(bookButton,addConsumable);
         buttonH.setAlignment(Pos.BOTTOM_RIGHT);
 
         vlabels = new VBox(15);
@@ -80,6 +85,17 @@ public class BookingCustomerScene {
         // make an instantiation of the BookingCustomerController
         BookingCustomerController bccontroler = new BookingCustomerController();
         setBooking(book);
+
+        viewConsumables = new ViewConsumables();
+
+
+        addConsumable.setOnAction(e -> {
+            try {
+                viewConsumables.setViewConsumablesScene(book);
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
+        });
 
         //set an action for the book button
         bookButton.setOnAction(e -> {

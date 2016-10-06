@@ -3,6 +3,7 @@ package Kino;
 import ApplicationLayer.DataTypes.*;
 import DataAccessLayer.*;
 import PresentationLayer.HomeScene;
+import PresentationLayer.ViewConsumables;
 import javafx.application.Application;
 import javafx.collections.ObservableList;
 import javafx.stage.Stage;
@@ -34,7 +35,6 @@ public class KinoXP extends Application {
 
         // fill all ArrayLists with data from the Database
         fillArrayLists();
-
         // make an instantiation of the class HomeScene
         HomeScene homeScene = new HomeScene();
         window.setTitle("KinoXP");

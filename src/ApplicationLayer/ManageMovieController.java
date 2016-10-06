@@ -1,7 +1,11 @@
 package ApplicationLayer;
 
+import ApplicationLayer.DataTypes.Booking;
 import ApplicationLayer.DataTypes.Movie;
+import ApplicationLayer.DataTypes.Schedule;
+import DataAccessLayer.DBBookings;
 import DataAccessLayer.DBMovies;
+import DataAccessLayer.DBSchedules;
 import Kino.KinoXP;
 import PresentationLayer.AddButtonScene;
 import PresentationLayer.HomeScene;
@@ -11,6 +15,8 @@ import javafx.collections.transformation.SortedList;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+
+import java.util.Iterator;
 
 /**
  * Created by Tsvetomir on 9/28/2016.
@@ -25,8 +31,31 @@ public class ManageMovieController {
 
     public void removeMovie(Movie movie) {
         try {// remove the movie from the global ObservableList and then from DB
+            Iterator<Schedule> scheduleIterator = KinoXP.scheduleList.iterator();
+            Iterator<Booking> bookingIterator = KinoXP.bookingList.iterator();
+
+            DBSchedules dbSchedule = new DBSchedules();
+            DBBookings dbBooking = new DBBookings();
             DBMovies dbMovies = new DBMovies();
-            KinoXP.movieList.remove(movie);
+
+            while(scheduleIterator.hasNext()){
+                Schedule schedule = scheduleIterator.next();
+                //find the schedule that has the same movie id as the movie that needs to be removed
+                if (schedule.getMovie_id() == movie.getMovie_id()){
+                    //find the booking that has the same schedule id as that schedule
+                    while (bookingIterator.hasNext()){
+                        Booking booking = bookingIterator.next();
+                        if(booking.getSchedule_id() == schedule.getSchedule_id()) {
+                            bookingIterator.remove();  //remove all bookings that have that schedule id
+                            dbBooking.remove(booking);
+                        }
+                    }
+                    scheduleIterator.remove(); //remove all schedules that have that movie id
+                    dbSchedule.remove(schedule);
+                }
+            }
+
+            KinoXP.movieList.remove(movie); //finally remove the selected movie
             dbMovies.remove(movie);
         }
         catch (NullPointerException nullPointer) {

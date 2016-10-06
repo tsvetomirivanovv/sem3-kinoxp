@@ -1,8 +1,9 @@
 package PresentationLayer;
 
+import ApplicationLayer.BookingCustomerController;
+import ApplicationLayer.DataTypes.Booking;
 import ApplicationLayer.DataTypes.Schedule;
 import ApplicationLayer.ResultsMovieController;
-import ApplicationLayer.ViewBookingController;
 import Kino.KinoXP;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -18,7 +19,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
-import javax.swing.text.View;
 import java.time.LocalDate;
 
 /**
@@ -29,16 +29,21 @@ public class ResultsMovieScene {
     public static TableView<Schedule> moviesTableView;
     private Scene manageMovieScene;
     private BorderPane root;
-    private Button manageBookingButton, backButton;
+    private Button manageBookingButton, backButton, createBookingButton;
     private TableColumn<Schedule, Integer> scheduleIdColumn;
     private TableColumn<Schedule, String> movieNameColumn;
     private TableColumn<Schedule, Integer> roomColumn;
     private TableColumn<Schedule, String> timeColumn;
     private TableColumn<Schedule, Integer> totalTicketsColumn;
     ResultsMovieController resultsMovieController = new ResultsMovieController();
+    BookingCustomerScene bookingCustomerScene = new BookingCustomerScene();
+    BookingCustomerController bookingCustomerController = new BookingCustomerController();
+    private Booking booking;
 
     public Scene setResultsMovieScene(LocalDate date) {
-
+        booking = new Booking();
+        createBookingButton = new Button("Create booking");
+        createBookingButton.setPrefSize(200,30);
         manageBookingButton = new Button("Manage bookings");
         manageBookingButton.setPrefSize(200, 30);
         backButton = new Button("Back");
@@ -83,7 +88,7 @@ public class ResultsMovieScene {
         Region buttonReg = new Region();
         buttonReg.setPrefWidth(50);
 
-        HBox buttonHBox = new HBox(20,backButton, manageBookingButton);
+        HBox buttonHBox = new HBox(20,backButton, manageBookingButton,createBookingButton);
 
         VBox vBox = new VBox(30, selectedDateBox, moviesTableView, buttonHBox);
 
@@ -105,7 +110,13 @@ public class ResultsMovieScene {
         });
 
 
+        createBookingButton.setOnAction(event -> bookingCustomerScene.setBookingScene(booking,"add"));
+
         return manageMovieScene;
+    }
+
+    public TableView getTable(){
+        return moviesTableView;
     }
 
 }

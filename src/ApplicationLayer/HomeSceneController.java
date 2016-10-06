@@ -32,7 +32,7 @@ public class HomeSceneController {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Warning");
                 alert.setHeaderText("No date selected!");
-                alert.setContentText("Please select a date");
+                alert.setContentText("Please select a date.");
                 alert.showAndWait();
             }
         }

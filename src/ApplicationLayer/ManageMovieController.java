@@ -8,6 +8,7 @@ import PresentationLayer.HomeScene;
 import PresentationLayer.ViewMovieScene;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
@@ -16,17 +17,21 @@ import javafx.scene.control.TextField;
  */
 public class ManageMovieController {
 
-    public static void backToHomeScene(){
+    public void backToHomeScene(){
         // go back to the HomeScene
         HomeScene homeScene = new HomeScene();
         KinoXP.window.setScene(homeScene.setHomeScene());
     }
 
-    public static void removeMovie(Movie movie) {
-        // remove the movie from the global ObservableList and then from DB
-        DBMovies dbMovies = new DBMovies();
-        KinoXP.movieList.remove(movie);
-        dbMovies.remove(movie);
+    public void removeMovie(Movie movie) {
+        try {// remove the movie from the global ObservableList and then from DB
+            DBMovies dbMovies = new DBMovies();
+            KinoXP.movieList.remove(movie);
+            dbMovies.remove(movie);
+        }
+        catch (NullPointerException nullPointer) {
+            showAlert();
+        }
     }
 
     public void addMovie() {
@@ -37,14 +42,31 @@ public class ManageMovieController {
     }
 
     public void editMovie(Movie mov) {
-        //shows the AddButtonScene with populated fields
-        AddButtonScene addButtonScene = new AddButtonScene();
-        addButtonScene.setAddScene(mov, "edit");
+        try {//shows the AddButtonScene with populated fields
+            AddButtonScene addButtonScene = new AddButtonScene();
+            addButtonScene.setAddScene(mov, "edit");
+        }
+        catch (NullPointerException nullPointer) {
+            showAlert();
+        }
     }
 
     public void showInfoScene(Movie movie) {
-        ViewMovieScene viewMovieScene = new ViewMovieScene();
-        viewMovieScene.setInfoScene(movie);
+        try {
+            ViewMovieScene viewMovieScene = new ViewMovieScene();
+            viewMovieScene.setInfoScene(movie);
+        }
+        catch (NullPointerException nullPointer) {
+            showAlert();
+        }
+    }
+
+    public void showAlert() {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Warning");
+        alert.setHeaderText("No movie selected!");
+        alert.setContentText("Please select a movie.");
+        alert.showAndWait();
     }
 
     public void searchMovie(TableView moviesTableView, TextField searchField){

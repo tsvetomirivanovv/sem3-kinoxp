@@ -1,9 +1,9 @@
 package ApplicationLayer.DataTypes;
-
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import static Kino.KinoXP.scheduleList;
 
 /**
  * Created by Andrei on 04/10/2016.
@@ -34,6 +34,7 @@ public class Booking {
         this.email = new SimpleStringProperty(email);
         this.phone = new SimpleStringProperty(phone);
         this.num_of_tickets = new SimpleIntegerProperty(num_of_tickets);
+
     }
 
     // GETTERS
@@ -112,6 +113,7 @@ public class Booking {
     public void setNum_of_tickets(int num_of_tickets) {
         this.num_of_tickets.set(num_of_tickets);
     }
+
 
     @Override
     public String toString() {

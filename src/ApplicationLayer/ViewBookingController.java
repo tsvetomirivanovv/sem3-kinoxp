@@ -1,6 +1,7 @@
 package ApplicationLayer;
 import ApplicationLayer.DataTypes.Booking;
 import ApplicationLayer.DataTypes.Schedule;
+import DataAccessLayer.DBBookings;
 import Kino.KinoXP;
 import PresentationLayer.HomeScene;
 import PresentationLayer.ViewBookingScene;
@@ -10,11 +11,15 @@ import javafx.scene.Scene;
 
 import java.time.LocalDate;
 
+import static Kino.KinoXP.bookingList;
 import static Kino.KinoXP.window;
 
 public class ViewBookingController {
     public static ObservableList searchBookingsBySchedule(Schedule schedule) {
         ObservableList<Booking> searchBookingList = FXCollections.observableArrayList();
+        DBBookings dbBookings = new DBBookings();
+        bookingList.clear();
+        bookingList=dbBookings.readAll();
         searchBookingList.clear();
 
         for (Booking booking : KinoXP.bookingList) {

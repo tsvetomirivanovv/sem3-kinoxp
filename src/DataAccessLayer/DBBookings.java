@@ -9,6 +9,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import static Kino.KinoXP.scheduleList;
+
 /**
  * Created by Andrei on 04/10/2016.
  */
@@ -36,7 +38,6 @@ public class DBBookings {
                 booking.setEmail(rs.getString("email"));
                 booking.setPhone(rs.getString("phone"));
                 booking.setNum_of_tickets(rs.getInt("num_of_tickets"));
-
                 bookings.add(booking);
             }
         } catch (SQLException e) {
@@ -56,20 +57,21 @@ public class DBBookings {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+        readAll();
     }
 
     public void update(Booking booking) {
         try {
             stmt = conn.createStatement();
-            String sql = "UPDATE bookings SET schedule_id = '" + booking.getSchedule_id() +
-                    "', full_name = " + booking.getFull_name() + "', email = " + booking.getEmail() +
-                    ", phone = " + booking.getPhone() + ", num_of_tickets = '" + booking.getNum_of_tickets() +
-                    "' WHERE booking_id = '" + booking.getBooking_id() + "';";
+            String sql = "UPDATE bookings SET schedule_id = '" + booking.getSchedule_id() +"', full_name = '" + booking.getFull_name() + "', email = '" + booking.getEmail() +
+                    "', phone='" + booking.getPhone() + "', num_of_tickets = '" + booking.getNum_of_tickets() +
+                    "' WHERE booking_id = '" + booking.getBooking_id() + "'";
 
             stmt.executeUpdate(sql);
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+        readAll();
     }
 
     public void remove(Booking booking) {
@@ -81,5 +83,6 @@ public class DBBookings {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+        readAll();
     }
 }

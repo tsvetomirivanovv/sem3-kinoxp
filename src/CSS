@@ -4,7 +4,7 @@
 
 .button {
     -fx-background-color: GOLD;
-    -fx-text-fill: #FFFFFF;
+    -fx-text-fill: BLACK;
     -fx-font-size: 13px;
     -fx-font-weight: bold;
     -fx-background-radius: 10;
@@ -21,6 +21,10 @@
     -fx-font: 16px "Garamond";
     -fx-text-fill: white;
     -fx-font-weight: bold;
+}
+
+.date-picker-popup > .month-year-pane {
+    -fx-background-color: black;
 }
 
 .table-view{

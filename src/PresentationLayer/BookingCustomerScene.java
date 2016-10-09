@@ -2,14 +2,20 @@ package PresentationLayer;
 
 import ApplicationLayer.BookingCustomerController;
 import ApplicationLayer.DataTypes.Booking;
+import ApplicationLayer.DataTypes.Movie;
 import ApplicationLayer.DataTypes.Schedule;
+import Kino.KinoXP;
 import javafx.application.Application;
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.*;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -23,13 +29,15 @@ public class BookingCustomerScene {
     private BorderPane borderPane;
     private Scene scene;
     private VBox vlabels, vtextfields;
-    private Label namelabel, phoneNo, email, ticket, totalPrice;
+    private Label namelabel, phoneNo, email, ticket, totalPrice,totalPriceConsumables,totalPriceMovieConsumables;
     private TextField nameTextField, phoneTextField, emailTextField, ticketTextField;
     private HBox bigH, buttonH;
     private Button bookButton, addConsumable;
     private Booking booking;
     ResultsMovieScene resultsMovieScene ;
     ViewConsumables viewConsumables;
+    ManageMovieScene manageMovieScene;
+    private double moviePrice,ticketTotalPrice;
 
     public void setBookingScene(Booking book, String addOrEdit) {
         window = new Stage();
@@ -42,6 +50,8 @@ public class BookingCustomerScene {
         email = new Label("Email");
         ticket = new Label("Ticket");
         totalPrice = new Label("Total Price: ");
+        totalPriceConsumables = new Label("Total Price for Consumables: ");
+        totalPriceMovieConsumables = new Label("Total Price for movie tickets + consumables: ");
 
         nameTextField = new TextField();
         nameTextField.setPromptText("Write name here...");
@@ -71,7 +81,7 @@ public class BookingCustomerScene {
         vlabels.setAlignment(Pos.CENTER);
 
         vtextfields = new VBox(7);
-        vtextfields.getChildren().addAll(nameTextField, phoneTextField, emailTextField, ticketTextField,totalPrice);
+        vtextfields.getChildren().addAll(nameTextField, phoneTextField, emailTextField, ticketTextField,totalPrice,totalPriceConsumables,totalPriceMovieConsumables);
         vtextfields.setAlignment(Pos.CENTER);
 
         bigH = new HBox(10);
@@ -90,9 +100,26 @@ public class BookingCustomerScene {
         viewConsumables = new ViewConsumables();
 
 
+        String name = resultsMovieScene.moviesTableView.getSelectionModel().getSelectedItem().getMovie_name();
+        for (Movie movie : KinoXP.movieList) {
+            if (movie.getName()== name) {
+                moviePrice = movie.getPrice();
+            }
+        }
+
+
+        ticketTextField.setOnKeyReleased(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                int tickets = Integer.parseInt(ticketTextField.getText());
+                ticketTotalPrice = moviePrice*tickets;
+                totalPrice.setText("Total price for the tickets: "+String.valueOf(ticketTotalPrice));
+            }
+        });
+
         addConsumable.setOnAction(e -> {
             try {
-                viewConsumables.setViewConsumablesScene(book);
+                viewConsumables.setViewConsumablesScene(book,ticketTotalPrice,totalPriceConsumables,totalPriceMovieConsumables);
             } catch (Exception e1) {
                 e1.printStackTrace();
             }
@@ -106,6 +133,14 @@ public class BookingCustomerScene {
             booking.setEmail(emailTextField.getText());
             booking.setPhone(phoneTextField.getText());
             booking.setNum_of_tickets(Integer.parseInt(ticketTextField.getText()));
+
+
+
+
+
+
+
+
 
             switch (addOrEdit) {
                 case "add":
@@ -121,7 +156,7 @@ public class BookingCustomerScene {
 
         });
 
-        scene = new Scene(borderPane, 600, 200);
+        scene = new Scene(borderPane, 600, 400);
         scene.getStylesheets().add("CSS");
         window.setScene(scene);
         window.show();

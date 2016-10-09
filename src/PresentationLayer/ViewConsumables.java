@@ -3,7 +3,10 @@ package PresentationLayer;
 import ApplicationLayer.DataTypes.Booking;
 import ApplicationLayer.DataTypes.Consumable;
 import Kino.KinoXP;
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -34,11 +37,13 @@ public class ViewConsumables {
     private TableColumn<Consumable, String> nameColumn;
     private TableColumn<Consumable, Double> priceColumn;
     public static ObservableList<Consumable> cons;
+    BookingCustomerScene bookingCustomerScene = new BookingCustomerScene();
 
-    public void setViewConsumablesScene(Booking booking) throws Exception {
+    public void setViewConsumablesScene(Booking booking,Double  ticketTotalPrice,Label consumabel, Label ticketConsumabel) throws Exception {
         stage = new Stage();
         consumable_by_bookingTableView = new TableView<>();
         consumable_by_bookingTableView.itemsProperty().setValue(KinoXP.consumableList);
+
 
         quantityTextField = new TextField();
         quantityTextField.setPromptText("Quantity for candy.");
@@ -100,6 +105,17 @@ public class ViewConsumables {
             totalPrice = 0.0;
             totalPriceLabel.setText("Total price: " + totalPrice);
             rightVbox.getChildren().add(totalPriceLabel);
+        });
+
+        confirmButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Platform.runLater(()->{
+                    consumabel.setText("Total Price for Consumables: " + totalPrice);
+                    ticketConsumabel.setText("Total Price for movie tickets + consumables: " + String.valueOf(totalPrice+ticketTotalPrice));
+                    stage.close();
+                });
+            }
         });
 
         borderPane = new BorderPane();

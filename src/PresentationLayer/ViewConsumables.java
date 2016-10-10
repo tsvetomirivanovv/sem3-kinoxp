@@ -73,7 +73,7 @@ public class ViewConsumables {
         totalPriceLabel.setAlignment(Pos.CENTER);
 
         rightVbox = new VBox();
-        rightVbox.setPrefWidth(150);
+        rightVbox.setPrefWidth(200);
         rightVbox.setAlignment(Pos.TOP_RIGHT);
         rightVbox.getChildren().addAll(totalPriceLabel);
 

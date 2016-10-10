@@ -46,7 +46,7 @@ public class ViewConsumables {
 
 
         quantityTextField = new TextField();
-        quantityTextField.setPromptText("Quantity for candy.");
+        quantityTextField.setPromptText("Quantity for consumable...");
         quantityTextField.setAlignment(Pos.CENTER_RIGHT);
 
         clearCart = new Button("Clear cart");
@@ -73,6 +73,7 @@ public class ViewConsumables {
         totalPriceLabel.setAlignment(Pos.CENTER);
 
         rightVbox = new VBox();
+        rightVbox.setPrefWidth(150);
         rightVbox.setAlignment(Pos.TOP_RIGHT);
         rightVbox.getChildren().addAll(totalPriceLabel);
 
@@ -88,9 +89,6 @@ public class ViewConsumables {
 
             Consumable consumable = new Consumable(selectedConsQuantity,selectedConsName,consumableTotalPrice);
 
-           //  Label l = new Label(selectedConsQuantity+"x : "+selectedConsName+ " = " +consumableTotalPrice );
-
-            //cons.add(consumable);
 
             Label l = new Label(consumable.getId()+" x : "+consumable.getName()+ " = " + consumable.getPrice());
 
@@ -125,6 +123,7 @@ public class ViewConsumables {
         borderPane.setRight(rightVbox);
 
         scene = new Scene(borderPane, 700, 500);
+        scene.getStylesheets().add("CSS");
         stage.setScene(scene);
         stage.show();
     }

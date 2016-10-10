@@ -25,19 +25,19 @@ import javafx.stage.Stage;
 import javax.swing.text.View;
 
 public class BookingCustomerScene {
+    ResultsMovieScene resultsMovieScene;
+    ViewConsumables viewConsumables;
+    ManageMovieScene manageMovieScene;
     private Stage window;
     private BorderPane borderPane;
     private Scene scene;
-    private VBox vlabels, vtextfields,vPrice;
-    private Label namelabel, phoneNo, email, ticket, totalPrice,totalPriceConsumables,totalPriceMovieConsumables;
+    private VBox vlabels, vtextfields, vPrice;
+    private Label namelabel, phoneNo, email, ticket, totalPrice, totalPriceConsumables, totalPriceMovieConsumables;
     private TextField nameTextField, phoneTextField, emailTextField, ticketTextField;
     private HBox bigH, buttonH;
     private Button bookButton, addConsumable;
     private Booking booking;
-    ResultsMovieScene resultsMovieScene ;
-    ViewConsumables viewConsumables;
-    ManageMovieScene manageMovieScene;
-    private double moviePrice,ticketTotalPrice;
+    private double moviePrice, ticketTotalPrice;
 
     public void setBookingScene(Booking book, String addOrEdit) {
         window = new Stage();
@@ -73,11 +73,11 @@ public class BookingCustomerScene {
 
         bookButton = new Button("Book movie");
         buttonH = new HBox(5);
-        buttonH.getChildren().addAll(bookButton,addConsumable);
+        buttonH.getChildren().addAll(bookButton, addConsumable);
         buttonH.setAlignment(Pos.BOTTOM_LEFT);
 
         vPrice = new VBox();
-        vPrice.getChildren().addAll(totalPrice,totalPriceConsumables,totalPriceMovieConsumables);
+        vPrice.getChildren().addAll(totalPrice, totalPriceConsumables, totalPriceMovieConsumables);
         vPrice.setAlignment(Pos.CENTER_LEFT);
 
         vlabels = new VBox(15);
@@ -107,7 +107,7 @@ public class BookingCustomerScene {
 
         String name = resultsMovieScene.moviesTableView.getSelectionModel().getSelectedItem().getMovie_name();
         for (Movie movie : KinoXP.movieList) {
-            if (movie.getName()== name) {
+            if (movie.getName() == name) {
                 moviePrice = movie.getPrice();
             }
         }
@@ -117,14 +117,14 @@ public class BookingCustomerScene {
             @Override
             public void handle(KeyEvent event) {
                 int tickets = Integer.parseInt(ticketTextField.getText());
-                ticketTotalPrice = moviePrice*tickets;
-                totalPrice.setText("Total price for the tickets: "+String.valueOf(ticketTotalPrice));
+                ticketTotalPrice = moviePrice * tickets;
+                totalPrice.setText("Total price for the tickets: " + ticketTotalPrice);
             }
         });
 
         addConsumable.setOnAction(e -> {
             try {
-                viewConsumables.setViewConsumablesScene(book,ticketTotalPrice,totalPriceConsumables,totalPriceMovieConsumables);
+                viewConsumables.setViewConsumablesScene(book, ticketTotalPrice, totalPriceConsumables, totalPriceMovieConsumables);
             } catch (Exception e1) {
                 e1.printStackTrace();
             }
@@ -167,7 +167,7 @@ public class BookingCustomerScene {
         nameTextField.setText(booking.getFull_name());
         phoneTextField.setText(booking.getPhone());
         emailTextField.setText(booking.getEmail());
-        ticketTextField.setText(booking.getNum_of_tickets()+"");
+        ticketTextField.setText(booking.getNum_of_tickets() + "");
 
     }
 

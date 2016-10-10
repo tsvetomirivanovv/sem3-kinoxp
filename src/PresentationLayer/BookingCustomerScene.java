@@ -28,7 +28,7 @@ public class BookingCustomerScene {
     private Stage window;
     private BorderPane borderPane;
     private Scene scene;
-    private VBox vlabels, vtextfields;
+    private VBox vlabels, vtextfields,vPrice;
     private Label namelabel, phoneNo, email, ticket, totalPrice,totalPriceConsumables,totalPriceMovieConsumables;
     private TextField nameTextField, phoneTextField, emailTextField, ticketTextField;
     private HBox bigH, buttonH;
@@ -49,7 +49,7 @@ public class BookingCustomerScene {
         phoneNo = new Label("Phone number");
         email = new Label("Email");
         ticket = new Label("Ticket");
-        totalPrice = new Label("Total Price: ");
+        totalPrice = new Label("Total price for the tickets: ");
         totalPriceConsumables = new Label("Total Price for Consumables: ");
         totalPriceMovieConsumables = new Label("Total Price for movie tickets + consumables: ");
 
@@ -74,23 +74,28 @@ public class BookingCustomerScene {
         bookButton = new Button("Book movie");
         buttonH = new HBox(5);
         buttonH.getChildren().addAll(bookButton,addConsumable);
-        buttonH.setAlignment(Pos.BOTTOM_RIGHT);
+        buttonH.setAlignment(Pos.BOTTOM_LEFT);
+
+        vPrice = new VBox();
+        vPrice.getChildren().addAll(totalPrice,totalPriceConsumables,totalPriceMovieConsumables);
+        vPrice.setAlignment(Pos.CENTER_LEFT);
 
         vlabels = new VBox(15);
         vlabels.getChildren().addAll(namelabel, phoneNo, email, ticket);
-        vlabels.setAlignment(Pos.CENTER);
+        vlabels.setAlignment(Pos.CENTER_LEFT);
 
         vtextfields = new VBox(7);
-        vtextfields.getChildren().addAll(nameTextField, phoneTextField, emailTextField, ticketTextField,totalPrice,totalPriceConsumables,totalPriceMovieConsumables);
-        vtextfields.setAlignment(Pos.CENTER);
+        vtextfields.getChildren().addAll(nameTextField, phoneTextField, emailTextField, ticketTextField);
+        vtextfields.setAlignment(Pos.CENTER_LEFT);
 
         bigH = new HBox(10);
         bigH.getChildren().addAll(vlabels, vtextfields);
-        bigH.setAlignment(Pos.CENTER);
+        bigH.setAlignment(Pos.CENTER_LEFT);
 
         borderPane = new BorderPane();
         borderPane.setPadding(new Insets(10, 10, 10, 10));
-        borderPane.setCenter(bigH);
+        borderPane.setTop(bigH);
+        borderPane.setCenter(vPrice);
         borderPane.setBottom(buttonH);
 
         // make an instantiation of the BookingCustomerController
@@ -134,14 +139,6 @@ public class BookingCustomerScene {
             booking.setPhone(phoneTextField.getText());
             booking.setNum_of_tickets(Integer.parseInt(ticketTextField.getText()));
 
-
-
-
-
-
-
-
-
             switch (addOrEdit) {
                 case "add":
                     bccontroler.addBooking(booking);
@@ -156,7 +153,7 @@ public class BookingCustomerScene {
 
         });
 
-        scene = new Scene(borderPane, 600, 400);
+        scene = new Scene(borderPane, 430, 280);
         scene.getStylesheets().add("CSS");
         window.setScene(scene);
         window.show();

@@ -14,10 +14,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-/**
- * Created by flexl on 06-10-2016.
- */
 public class ManageConsumablesScene {
+    //fields
     public static TableView<Consumable> consumablesTableView;
     private Scene manageConsumablesScene;
     private BorderPane root;
@@ -25,6 +23,7 @@ public class ManageConsumablesScene {
     private TableColumn<Consumable, String> nameColumn;
     private TableColumn<Consumable, Double> priceColumn;
 
+    //initialize the scene
     public Scene setManageConsumablesScene() {
 
         addButton = new Button("Add");

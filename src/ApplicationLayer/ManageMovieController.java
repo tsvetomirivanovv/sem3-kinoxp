@@ -20,11 +20,9 @@ import javafx.scene.control.TextField;
 import java.util.Iterator;
 import java.util.Optional;
 
-/**
- * Created by Tsvetomir on 9/28/2016.
- */
 public class ManageMovieController {
 
+    //buttons actions
     public void backToHomeScene() {
         // go back to the HomeScene
         HomeScene homeScene = new HomeScene();
@@ -32,6 +30,7 @@ public class ManageMovieController {
     }
 
     public void removeMovie(Movie movie) {
+        //confirmation alert
         Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
         confirmAlert.setHeaderText("Remove movie");
         confirmAlert.setContentText("Are you sure you want to remove \"" + movie.getName() + "\"?");
@@ -102,6 +101,7 @@ public class ManageMovieController {
         }
     }
 
+    //no movie selected
     public void showAlert() {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Warning");
@@ -110,6 +110,8 @@ public class ManageMovieController {
         alert.showAndWait();
     }
 
+
+    //search field functionality
     public void searchMovie(TableView moviesTableView, TextField searchField) {
         FilteredList<Movie> filteredData = new FilteredList<>(moviesTableView.getItems(), p -> true);
 

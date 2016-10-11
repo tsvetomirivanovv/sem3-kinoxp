@@ -4,9 +4,6 @@ import ApplicationLayer.DataTypes.Booking;
 import DataAccessLayer.DBBookings;
 import Kino.KinoXP;
 
-/**
- * Created by Andrei on 10/4/2016.
- */
 public class BookingCustomerController {
     public void addBooking(Booking booking) {
         // add the new movie to the global ObservableList and DB

@@ -11,11 +11,9 @@ import javafx.scene.layout.VBox;
 
 import java.time.LocalDate;
 
-/**
- * Created by Andrei on 28/09/2016.
- */
 public class HomeScene {
 
+    //fields
     private Scene homeScene;
     private BorderPane root;
     private Button manageMovieButton;
@@ -23,8 +21,9 @@ public class HomeScene {
     private Button manageConsumables;
     private LocalDate date;
 
-    public Scene setHomeScene() {
 
+    //initialize the scene
+    public Scene setHomeScene() {
         // Elements
         DatePicker datePicker = new DatePicker();
         datePicker.setPromptText("mm/dd/yyyy");

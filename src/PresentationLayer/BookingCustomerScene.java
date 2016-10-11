@@ -19,9 +19,10 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class BookingCustomerScene {
+
+    //fields
     ResultsMovieScene resultsMovieScene;
     ViewConsumables viewConsumables;
-    ManageMovieScene manageMovieScene;
     private Stage window;
     private BorderPane borderPane;
     private Scene scene;
@@ -33,6 +34,8 @@ public class BookingCustomerScene {
     private Booking booking;
     private double moviePrice, ticketTotalPrice;
 
+
+    //initialize the scene
     public void setBookingScene(Booking book, String addOrEdit) {
         window = new Stage();
 

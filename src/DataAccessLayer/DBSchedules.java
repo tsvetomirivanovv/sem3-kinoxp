@@ -11,15 +11,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-/**
- * Created by Andrei on 04/10/2016.
- */
 public class DBSchedules {
 
     //gets connection from database class
     private static Connection conn = Database.getConn();
     private static Statement stmt = null;
 
+    //get data from database
     public ObservableList readAll() {
         ObservableList<Schedule> schedules = FXCollections.observableArrayList();
         schedules.clear();
@@ -59,6 +57,7 @@ public class DBSchedules {
         return "";
     }
 
+    //insert a new entry tot the database
     public void insert(Schedule schedule) {
 
         try {
@@ -72,6 +71,8 @@ public class DBSchedules {
         }
     }
 
+
+    //update the database
     public void update(Schedule schedule) {
         try {
             stmt = conn.createStatement();
@@ -85,6 +86,7 @@ public class DBSchedules {
         }
     }
 
+    //remove an database entry
     public void remove(Schedule schedule) {
 
         try {

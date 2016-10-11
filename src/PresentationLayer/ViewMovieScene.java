@@ -11,12 +11,9 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-/**
- * Created by Tudor on 9/29/2016.
- */
-
 public class ViewMovieScene {
 
+    //fields
     private Stage window;
     private Scene scene;
     private BorderPane root;
@@ -25,6 +22,8 @@ public class ViewMovieScene {
     private Label name, duration, price, actors,
             description, genre, rating, ageLimit;
 
+
+    //initialize the scene
     public void setInfoScene(Movie movie) {
 
         window = new Stage();

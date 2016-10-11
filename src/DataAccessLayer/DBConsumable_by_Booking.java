@@ -9,14 +9,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-/**
- * Created by Petru on 06-Oct-16.
- */
 public class DBConsumable_by_Booking {
     //gets connection from database class
     private static Connection conn = Database.getConn();
     private static Statement stmt = null;
 
+    //get data from database
     public ObservableList readAll() {
         ObservableList<Consumable_by_Booking> consumable_by_bookingS = FXCollections.observableArrayList();
         consumable_by_bookingS.clear();
@@ -42,6 +40,7 @@ public class DBConsumable_by_Booking {
         return consumable_by_bookingS;
     }
 
+    //insert a new entry tot the database
     public void insert(Consumable_by_Booking consumable_by_booking) {
 
         try {
@@ -56,6 +55,7 @@ public class DBConsumable_by_Booking {
         }
     }
 
+    //update the database
     public void update(Consumable_by_Booking consumable_by_booking) {
         try {
             stmt = conn.createStatement();
@@ -70,6 +70,7 @@ public class DBConsumable_by_Booking {
         }
     }
 
+    //remove an database entry
     public void remove(Consumable_by_Booking consumable_by_booking) {
 
         try {

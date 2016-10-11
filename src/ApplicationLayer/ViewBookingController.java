@@ -16,9 +16,9 @@ import java.util.Optional;
 
 import static Kino.KinoXP.bookingList;
 
-
 public class ViewBookingController {
 
+    //return the bookings for a scheduled movie
     public static ObservableList searchBookingsBySchedule(Schedule schedule) {
         ObservableList<Booking> searchBookingList = FXCollections.observableArrayList();
         DBBookings dbBookings = new DBBookings();
@@ -35,6 +35,7 @@ public class ViewBookingController {
         return searchBookingList;
     }
 
+    // remove the selected booking
     public static void removeBooking(Booking booking) {
         Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
         confirmAlert.setHeaderText("Remove booking");
@@ -67,6 +68,7 @@ public class ViewBookingController {
         }
     }
 
+    //no movie selected
     public static void showAlert() {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Warning");
@@ -77,8 +79,3 @@ public class ViewBookingController {
 
 
 }
-
- /*   public static void backToResults(Scene scene){
-        KinoXP.window.setScene();
-}
-*/

@@ -21,11 +21,9 @@ import javafx.scene.text.FontWeight;
 
 import java.time.LocalDate;
 
-/**
- * Created by Tsvetomir on 9/28/2016.
- */
 public class ResultsMovieScene {
 
+    //fields
     public static TableView<Schedule> moviesTableView;
     ResultsMovieController resultsMovieController = new ResultsMovieController();
     BookingCustomerScene bookingCustomerScene = new BookingCustomerScene();
@@ -40,6 +38,7 @@ public class ResultsMovieScene {
     private TableColumn<Schedule, Integer> totalTicketsColumn;
     private Booking booking;
 
+    //initialize the scene
     public Scene setResultsMovieScene(LocalDate date) {
         booking = new Booking();
         createBookingButton = new Button("Create booking");

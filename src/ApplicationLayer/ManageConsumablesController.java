@@ -6,11 +6,9 @@ import PresentationLayer.AddConsButtonScene;
 import PresentationLayer.HomeScene;
 import javafx.scene.control.Alert;
 
-/**
- * Created by flexl on 06-10-2016.
- */
 public class ManageConsumablesController {
 
+    //buttons actions
     public void backToHomeScene() {
         // go back to the HomeScene
         HomeScene homeScene = new HomeScene();
@@ -33,7 +31,7 @@ public class ManageConsumablesController {
         }
     }
 
-    public void showAlert() {
+    public void showAlert() { //no consumable selected
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Warning");
         alert.setHeaderText("No consumable selected!");

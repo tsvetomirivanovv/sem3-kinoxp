@@ -4,9 +4,6 @@ import ApplicationLayer.DataTypes.Movie;
 import DataAccessLayer.DBMovies;
 import Kino.KinoXP;
 
-/**
- * Created by Andrei on 29/09/2016.
- */
 public class AddSceneController {
 
     public void addMovie(Movie movie) {

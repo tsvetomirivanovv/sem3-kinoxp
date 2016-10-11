@@ -4,7 +4,6 @@ import ApplicationLayer.DataTypes.Booking;
 import ApplicationLayer.DataTypes.Consumable;
 import Kino.KinoXP;
 import javafx.application.Platform;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -17,13 +16,11 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-
 public class ViewConsumables {
 
+    //fields
     public static Double totalPrice = 0.0;
     public static TableView<Consumable> consumable_by_bookingTableView;
-    public static ObservableList<Consumable> cons;
-    BookingCustomerScene bookingCustomerScene = new BookingCustomerScene();
     private Label totalPriceLabel;
     private VBox rightVbox;
     private TextField quantityTextField;
@@ -31,11 +28,12 @@ public class ViewConsumables {
     private Scene scene;
     private BorderPane borderPane;
     private Button confirmButton, addConsumables, clearCart;
-    private HBox hbox, tableHbox;
+    private HBox hbox;
     private TableColumn<Consumable, Integer> idColumn;
     private TableColumn<Consumable, String> nameColumn;
     private TableColumn<Consumable, Double> priceColumn;
 
+    //initialize the scene
     public void setViewConsumablesScene(Booking booking, Double ticketTotalPrice, Label consumabel, Label ticketConsumabel) throws Exception {
         stage = new Stage();
         consumable_by_bookingTableView = new TableView<>();
@@ -119,6 +117,7 @@ public class ViewConsumables {
         borderPane.setBottom(hbox);
         borderPane.setRight(rightVbox);
 
+        //set the scene
         scene = new Scene(borderPane, 700, 500);
         scene.getStylesheets().add("CSS");
         stage.setScene(scene);

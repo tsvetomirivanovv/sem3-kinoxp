@@ -9,14 +9,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-/**
- * Created by Petru on 06-Oct-16.
- */
 public class DBConsumables {
     //gets connection from database class
     private static Connection conn = Database.getConn();
     private static Statement stmt = null;
 
+    //get data from database
     public ObservableList readAll() {
         ObservableList<Consumable> consumables = FXCollections.observableArrayList();
         consumables.clear();
@@ -41,6 +39,7 @@ public class DBConsumables {
         return consumables;
     }
 
+    //insert a new entry tot the database
     public void insert(Consumable consumable) {
 
         try {
@@ -54,6 +53,7 @@ public class DBConsumables {
         }
     }
 
+    //update the database
     public void update(Consumable consumable) {
         try {
             stmt = conn.createStatement();
@@ -67,6 +67,7 @@ public class DBConsumables {
         }
     }
 
+    //remove an database entry
     public void remove(Consumable consumable) {
 
         try {

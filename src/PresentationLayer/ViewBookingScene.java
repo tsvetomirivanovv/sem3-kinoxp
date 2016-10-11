@@ -20,17 +20,15 @@ import javafx.scene.layout.VBox;
 
 import java.time.LocalDate;
 
-/**
- * Created by Admin on 10/6/16.
- */
 public class ViewBookingScene {
+
+    //fields
     public static TableView<Booking> bookingsTableView;
     private static Scene viewBookingScene;
     public ObservableList<Booking> bookingList = FXCollections.observableArrayList();
     private BorderPane root;
     private Button editButton, removeButton, backButton;
     private TableColumn<Booking, Integer> bookingColumn;
-    /*private TableColumn<Booking, Integer> movieColumn;*/
     private TableColumn<Booking, String> nameColumn;
     private TableColumn<Booking, Integer> ticketColumn;
 
@@ -38,6 +36,8 @@ public class ViewBookingScene {
         return viewBookingScene;
     }
 
+
+    //initialize the scene
     public Scene setViewBookingScene(Schedule schedule, LocalDate date) throws Exception {
         editButton = new Button("Edit");
         editButton.setPrefSize(100, 30);
@@ -51,8 +51,6 @@ public class ViewBookingScene {
         bookingsTableView.itemsProperty().setValue(bookingList);
         bookingColumn = new TableColumn<>("ID");
         bookingColumn.setMinWidth(120);
-            /*movieColumn = new TableColumn<>("Movie");
-            movieColumn.setMinWidth(120);*/
         nameColumn = new TableColumn<>("Name");
         nameColumn.setMinWidth(120);
         ticketColumn = new TableColumn<>("Tickets");
@@ -78,6 +76,7 @@ public class ViewBookingScene {
         root = new BorderPane();
         root.setCenter(vBox);
         viewBookingScene = new Scene(root, 700, 500);
+
         // make an instantiation of the Controller
         ViewBookingController viewBookingController = new ViewBookingController();
         HomeSceneController homeSceneController = new HomeSceneController();

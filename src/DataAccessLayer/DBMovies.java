@@ -9,15 +9,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-/**
- * Created by Andrei on 29/09/2016.
- */
 public class DBMovies {
 
     //gets connection from database class
     private static Connection conn = Database.getConn();
     private static PreparedStatement stmt = null;
 
+    //get data from database
     public ObservableList readAll() {
         ObservableList<Movie> movies = FXCollections.observableArrayList();
         movies.clear();
@@ -48,6 +46,7 @@ public class DBMovies {
         return movies;
     }
 
+    //insert a new entry tot the database
     public void insert(Movie movie) {
         try {
             String sql = "insert into movies values\n" +
@@ -65,6 +64,7 @@ public class DBMovies {
         }
     }
 
+    //update the database
     public void update(Movie movie, String holdName) {
         try {
             String sql = "UPDATE movies SET movie_name = '" + movie.getName() + "', movie_duration = " + movie.getDuration() +
@@ -82,6 +82,7 @@ public class DBMovies {
         }
     }
 
+    //remove an database entry
     public void remove(Movie movie) {
 
         try {

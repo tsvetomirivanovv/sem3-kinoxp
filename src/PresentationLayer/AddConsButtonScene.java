@@ -13,11 +13,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-/**
- * Created by flexl on 06-10-2016.
- */
 public class AddConsButtonScene {
 
+    //fields
     private Stage window;
     private BorderPane borderPane;
     private Scene scene;
@@ -29,6 +27,7 @@ public class AddConsButtonScene {
     private Consumable consumable;
 
 
+    //initialize the scene
     public void setAddScene(Consumable con, String addOrEdit) {
         window = new Stage();
 

@@ -16,9 +16,9 @@ import javafx.stage.Stage;
 
 import java.io.File;
 
-
 public class AddButtonScene {
 
+    //fields
     private Stage window;
     private BorderPane borderPane;
     private FileChooser coverChooser;
@@ -32,6 +32,7 @@ public class AddButtonScene {
     private Movie movie;
 
 
+    //initialize the scene
     public void setAddScene(Movie mov, String addOrEdit) {
         window = new Stage();
 

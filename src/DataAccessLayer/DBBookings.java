@@ -9,15 +9,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-/**
- * Created by Andrei on 04/10/2016.
- */
 public class DBBookings {
 
     //gets connection from database class
     private static Connection conn = Database.getConn();
     private static Statement stmt = null;
 
+
+    //get data from database
     public ObservableList readAll() {
         ObservableList<Booking> bookings = FXCollections.observableArrayList();
         bookings.clear();
@@ -44,6 +43,8 @@ public class DBBookings {
         return bookings;
     }
 
+
+    //insert a new entry tot the database
     public void insert(Booking booking) {
 
         try {
@@ -58,6 +59,7 @@ public class DBBookings {
         readAll();
     }
 
+    //update the database
     public void update(Booking booking) {
         try {
             stmt = conn.createStatement();
@@ -72,6 +74,8 @@ public class DBBookings {
         readAll();
     }
 
+
+    //remove an database entry
     public void remove(Booking booking) {
 
         try {

@@ -4,9 +4,6 @@ import ApplicationLayer.DataTypes.Consumable;
 import DataAccessLayer.DBConsumables;
 import Kino.KinoXP;
 
-/**
- * Created by flexl on 06-10-2016.
- */
 public class AddConsSceneController {
     public void addConsumable(Consumable consumable) {
         // add the new movie to the global ObservableList and DB

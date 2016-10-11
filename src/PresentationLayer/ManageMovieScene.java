@@ -16,11 +16,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
-/**
- * Created by Tsvetomir on 9/28/2016.
- */
 public class ManageMovieScene {
 
+    //fields
     public static TableView<Movie> moviesTableView;
     private Scene manageMovieScene;
     private BorderPane root;
@@ -31,6 +29,7 @@ public class ManageMovieScene {
     private TableColumn<Movie, Double> priceColumn;
     private TableColumn<Movie, String> genreColumn;
 
+    //initialize the scene
     public Scene setManageMovieScene() {
 
         searchField = new TextField();

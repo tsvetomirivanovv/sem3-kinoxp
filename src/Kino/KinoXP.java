@@ -7,9 +7,6 @@ import javafx.application.Application;
 import javafx.collections.ObservableList;
 import javafx.stage.Stage;
 
-/**
- * Created by Tsvetomir on 9/28/2016.
- */
 public class KinoXP extends Application {
 
     public static Stage window;
@@ -21,10 +18,13 @@ public class KinoXP extends Application {
     public static ObservableList<Consumable> consumableList;
     public static ObservableList<Consumable_by_Booking> consumable_by_bookings;
 
+    //MAIN
     public static void main(String[] args) {
         launch(args);
     }
 
+
+    //start method
     public void start(Stage primaryStage) throws Exception {
         window = primaryStage;
 
@@ -34,14 +34,18 @@ public class KinoXP extends Application {
 
         // fill all ArrayLists with data from the Database
         fillArrayLists();
+
         // make an instantiation of the class HomeScene
         HomeScene homeScene = new HomeScene();
+
+        //set the window and show it
         window.setTitle("KinoXP");
         window.setScene(homeScene.setHomeScene());
         window.show();
 
     }
 
+    //get the data from the database
     public void fillArrayLists() {
 
         DBMovies dbMovies = new DBMovies();

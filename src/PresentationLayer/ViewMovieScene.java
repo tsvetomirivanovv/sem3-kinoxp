@@ -3,7 +3,6 @@ package PresentationLayer;
 import ApplicationLayer.DataTypes.Movie;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
@@ -14,10 +13,6 @@ import javafx.stage.Stage;
 
 /**
  * Created by Tudor on 9/29/2016.
- */
-
-/* TO DO:
-    -> replace random path with movie.getCoverPath()
  */
 
 public class ViewMovieScene {

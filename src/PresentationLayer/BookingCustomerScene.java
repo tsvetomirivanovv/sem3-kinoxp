@@ -5,9 +5,6 @@ import ApplicationLayer.DataTypes.Booking;
 import ApplicationLayer.DataTypes.Movie;
 import ApplicationLayer.DataTypes.Schedule;
 import Kino.KinoXP;
-import javafx.application.Application;
-import javafx.beans.binding.Bindings;
-import javafx.beans.property.*;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -18,11 +15,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
-import javax.swing.text.View;
 
 public class BookingCustomerScene {
     ResultsMovieScene resultsMovieScene;

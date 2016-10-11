@@ -14,32 +14,29 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 
-
-
 public class ViewConsumables {
 
-    public static  Double totalPrice = 0.0;
+    public static Double totalPrice = 0.0;
+    public static TableView<Consumable> consumable_by_bookingTableView;
+    public static ObservableList<Consumable> cons;
+    BookingCustomerScene bookingCustomerScene = new BookingCustomerScene();
     private Label totalPriceLabel;
     private VBox rightVbox;
     private TextField quantityTextField;
     private Stage stage;
     private Scene scene;
     private BorderPane borderPane;
-    private Button confirmButton,addConsumables,clearCart;
-    private HBox hbox,tableHbox;
-    public static TableView<Consumable> consumable_by_bookingTableView;
+    private Button confirmButton, addConsumables, clearCart;
+    private HBox hbox, tableHbox;
     private TableColumn<Consumable, Integer> idColumn;
     private TableColumn<Consumable, String> nameColumn;
     private TableColumn<Consumable, Double> priceColumn;
-    public static ObservableList<Consumable> cons;
-    BookingCustomerScene bookingCustomerScene = new BookingCustomerScene();
 
-    public void setViewConsumablesScene(Booking booking,Double  ticketTotalPrice,Label consumabel, Label ticketConsumabel) throws Exception {
+    public void setViewConsumablesScene(Booking booking, Double ticketTotalPrice, Label consumabel, Label ticketConsumabel) throws Exception {
         stage = new Stage();
         consumable_by_bookingTableView = new TableView<>();
         consumable_by_bookingTableView.itemsProperty().setValue(KinoXP.consumableList);
@@ -80,17 +77,17 @@ public class ViewConsumables {
 
         hbox = new HBox(5);
         hbox.setAlignment(Pos.BOTTOM_CENTER);
-        hbox.getChildren().addAll(quantityTextField,clearCart,addConsumables,confirmButton);
+        hbox.getChildren().addAll(quantityTextField, clearCart, addConsumables, confirmButton);
 
-        addConsumables.setOnAction(event ->{
+        addConsumables.setOnAction(event -> {
             String selectedConsName = consumable_by_bookingTableView.getSelectionModel().getSelectedItem().getName();
             int selectedConsQuantity = Integer.parseInt(quantityTextField.getText());
-            double consumableTotalPrice = selectedConsQuantity*consumable_by_bookingTableView.getSelectionModel().getSelectedItem().getPrice();
+            double consumableTotalPrice = selectedConsQuantity * consumable_by_bookingTableView.getSelectionModel().getSelectedItem().getPrice();
 
-            Consumable consumable = new Consumable(selectedConsQuantity,selectedConsName,consumableTotalPrice);
+            Consumable consumable = new Consumable(selectedConsQuantity, selectedConsName, consumableTotalPrice);
 
 
-            Label l = new Label(consumable.getId()+" x : "+consumable.getName()+ " = " + consumable.getPrice());
+            Label l = new Label(consumable.getId() + " x : " + consumable.getName() + " = " + consumable.getPrice());
 
             rightVbox.getChildren().add(l);
             quantityTextField.clear();
@@ -108,9 +105,9 @@ public class ViewConsumables {
         confirmButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                Platform.runLater(()->{
+                Platform.runLater(() -> {
                     consumabel.setText("Total Price for Consumables: " + totalPrice);
-                    ticketConsumabel.setText("Total Price for movie tickets + consumables: " + String.valueOf(totalPrice+ticketTotalPrice));
+                    ticketConsumabel.setText("Total Price for movie tickets + consumables: " + String.valueOf(totalPrice + ticketTotalPrice));
                     stage.close();
                 });
             }

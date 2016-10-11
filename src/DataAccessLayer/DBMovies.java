@@ -4,7 +4,10 @@ import ApplicationLayer.DataTypes.Movie;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  * Created by Andrei on 29/09/2016.

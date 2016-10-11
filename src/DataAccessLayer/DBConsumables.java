@@ -1,6 +1,5 @@
 package DataAccessLayer;
 
-import ApplicationLayer.DataTypes.Booking;
 import ApplicationLayer.DataTypes.Consumable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

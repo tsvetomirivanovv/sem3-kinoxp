@@ -1,13 +1,9 @@
 package ApplicationLayer;
 
-import ApplicationLayer.DataTypes.Movie;
 import Kino.KinoXP;
 import PresentationLayer.ManageConsumablesScene;
 import PresentationLayer.ManageMovieScene;
 import PresentationLayer.ResultsMovieScene;
-import PresentationLayer.ViewBookingScene;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 
 import java.time.LocalDate;
@@ -22,7 +18,7 @@ public class HomeSceneController {
     private ResultsMovieScene resultsMovieScene = new ResultsMovieScene();
 
     public void changeScene(String scene, LocalDate date) {
-        if(scene.equals("manage")) {
+        if (scene.equals("manage")) {
             KinoXP.window.setTitle("Manage movies - KinoXP");
             KinoXP.window.setScene(manageMovieScene.setManageMovieScene());
 
@@ -34,8 +30,7 @@ public class HomeSceneController {
             try {
                 KinoXP.window.setTitle("Scheduled results - KinoXP");
                 KinoXP.window.setScene(resultsMovieScene.setResultsMovieScene(date));
-            }
-            catch (NullPointerException nullPointer) {
+            } catch (NullPointerException nullPointer) {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Warning");
                 alert.setHeaderText("No date selected!");

@@ -9,8 +9,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import static Kino.KinoXP.scheduleList;
-
 /**
  * Created by Andrei on 04/10/2016.
  */
@@ -63,7 +61,7 @@ public class DBBookings {
     public void update(Booking booking) {
         try {
             stmt = conn.createStatement();
-            String sql = "UPDATE bookings SET schedule_id = '" + booking.getSchedule_id() +"', full_name = '" + booking.getFull_name() + "', email = '" + booking.getEmail() +
+            String sql = "UPDATE bookings SET schedule_id = '" + booking.getSchedule_id() + "', full_name = '" + booking.getFull_name() + "', email = '" + booking.getEmail() +
                     "', phone='" + booking.getPhone() + "', num_of_tickets = '" + booking.getNum_of_tickets() +
                     "' WHERE booking_id = '" + booking.getBooking_id() + "'";
 

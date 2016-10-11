@@ -27,6 +27,9 @@ import java.time.LocalDate;
 public class ResultsMovieScene {
 
     public static TableView<Schedule> moviesTableView;
+    ResultsMovieController resultsMovieController = new ResultsMovieController();
+    BookingCustomerScene bookingCustomerScene = new BookingCustomerScene();
+    BookingCustomerController bookingCustomerController = new BookingCustomerController();
     private Scene manageMovieScene;
     private BorderPane root;
     private Button manageBookingButton, backButton, createBookingButton;
@@ -35,15 +38,12 @@ public class ResultsMovieScene {
     private TableColumn<Schedule, Integer> roomColumn;
     private TableColumn<Schedule, String> timeColumn;
     private TableColumn<Schedule, Integer> totalTicketsColumn;
-    ResultsMovieController resultsMovieController = new ResultsMovieController();
-    BookingCustomerScene bookingCustomerScene = new BookingCustomerScene();
-    BookingCustomerController bookingCustomerController = new BookingCustomerController();
     private Booking booking;
 
     public Scene setResultsMovieScene(LocalDate date) {
         booking = new Booking();
         createBookingButton = new Button("Create booking");
-        createBookingButton.setPrefSize(200,30);
+        createBookingButton.setPrefSize(200, 30);
         manageBookingButton = new Button("Manage bookings");
         manageBookingButton.setPrefSize(200, 30);
         backButton = new Button("Back");
@@ -56,7 +56,7 @@ public class ResultsMovieScene {
 
         scheduleIdColumn = new TableColumn<>("Schedule id");
         scheduleIdColumn.setMinWidth(120);
-        movieNameColumn= new TableColumn<>("Movie name");
+        movieNameColumn = new TableColumn<>("Movie name");
         movieNameColumn.setMinWidth(120);
         roomColumn = new TableColumn<>("Room no");
         roomColumn.setMinWidth(120);
@@ -88,7 +88,7 @@ public class ResultsMovieScene {
         Region buttonReg = new Region();
         buttonReg.setPrefWidth(50);
 
-        HBox buttonHBox = new HBox(20,backButton, manageBookingButton,createBookingButton);
+        HBox buttonHBox = new HBox(20, backButton, manageBookingButton, createBookingButton);
 
         VBox vBox = new VBox(30, selectedDateBox, moviesTableView, buttonHBox);
 
@@ -103,19 +103,19 @@ public class ResultsMovieScene {
         manageBookingButton.setOnAction(event -> {
             ViewBookingScene viewBookingScene = new ViewBookingScene();
             try {
-                KinoXP.window.setScene(viewBookingScene.setViewBookingScene(moviesTableView.getSelectionModel().getSelectedItem(),date));
+                KinoXP.window.setScene(viewBookingScene.setViewBookingScene(moviesTableView.getSelectionModel().getSelectedItem(), date));
             } catch (Exception e) {
                 e.printStackTrace();
             }
         });
 
 
-        createBookingButton.setOnAction(event -> bookingCustomerScene.setBookingScene(booking,"add"));
+        createBookingButton.setOnAction(event -> bookingCustomerScene.setBookingScene(booking, "add"));
 
         return manageMovieScene;
     }
 
-    public TableView getTable(){
+    public TableView getTable() {
         return moviesTableView;
     }
 

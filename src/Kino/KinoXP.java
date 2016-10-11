@@ -3,7 +3,6 @@ package Kino;
 import ApplicationLayer.DataTypes.*;
 import DataAccessLayer.*;
 import PresentationLayer.HomeScene;
-import PresentationLayer.ViewConsumables;
 import javafx.application.Application;
 import javafx.collections.ObservableList;
 import javafx.stage.Stage;

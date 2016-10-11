@@ -1,4 +1,5 @@
 package ApplicationLayer;
+
 import ApplicationLayer.DataTypes.Booking;
 import ApplicationLayer.DataTypes.Consumable_by_Booking;
 import ApplicationLayer.DataTypes.Schedule;
@@ -9,8 +10,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+
 import java.util.Iterator;
 import java.util.Optional;
+
 import static Kino.KinoXP.bookingList;
 
 
@@ -20,7 +23,7 @@ public class ViewBookingController {
         ObservableList<Booking> searchBookingList = FXCollections.observableArrayList();
         DBBookings dbBookings = new DBBookings();
         bookingList.clear();
-        bookingList=dbBookings.readAll();
+        bookingList = dbBookings.readAll();
         searchBookingList.clear();
 
         for (Booking booking : KinoXP.bookingList) {
@@ -31,6 +34,7 @@ public class ViewBookingController {
 
         return searchBookingList;
     }
+
     public static void removeBooking(Booking booking) {
         Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
         confirmAlert.setHeaderText("Remove booking");
@@ -62,6 +66,7 @@ public class ViewBookingController {
             confirmAlert.close();
         }
     }
+
     public static void showAlert() {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Warning");

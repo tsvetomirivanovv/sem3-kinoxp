@@ -38,9 +38,9 @@ public class ViewBookingScene {
         public static TableView<Booking> bookingsTableView;
         private static Scene viewBookingScene;
         private BorderPane root;
-        private Button editButton, removeButton, confirmButton,backButton;
+        private Button editButton, removeButton, backButton;
         private TableColumn<Booking, Integer> bookingColumn;
-        private TableColumn<Booking, Integer> movieColumn;
+        /*private TableColumn<Booking, Integer> movieColumn;*/
         private TableColumn<Booking, String> nameColumn;
         private TableColumn<Booking, Integer> ticketColumn;
 
@@ -49,8 +49,6 @@ public class ViewBookingScene {
             editButton.setPrefSize(100, 30);
             removeButton = new Button("Remove");
             removeButton.setPrefSize(100, 30);
-            confirmButton = new Button("Confirm");
-            confirmButton.setPrefSize(100, 30);
             backButton = new Button("Back");
             backButton.setPrefSize(100, 30);
             bookingsTableView = new TableView<>();
@@ -59,8 +57,8 @@ public class ViewBookingScene {
             bookingsTableView.itemsProperty().setValue(bookingList);
             bookingColumn = new TableColumn<>("ID");
             bookingColumn.setMinWidth(120);
-            movieColumn = new TableColumn<>("Movie");
-            movieColumn.setMinWidth(120);
+            /*movieColumn = new TableColumn<>("Movie");
+            movieColumn.setMinWidth(120);*/
             nameColumn = new TableColumn<>("Name");
             nameColumn.setMinWidth(120);
             ticketColumn = new TableColumn<>("Tickets");
@@ -71,9 +69,9 @@ public class ViewBookingScene {
             ticketColumn.setCellValueFactory(new PropertyValueFactory<>("num_of_tickets"));
 
             bookingsTableView.getColumns().addAll(bookingColumn, nameColumn, ticketColumn);
-            bookingsTableView.setEditable(true);
+            bookingsTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
-            HBox buttonHBox = new HBox(20, backButton, editButton,removeButton, confirmButton);
+            HBox buttonHBox = new HBox(20, backButton, editButton,removeButton);
 
             VBox vBox = new VBox(30, bookingsTableView, buttonHBox);
             root = new BorderPane();
